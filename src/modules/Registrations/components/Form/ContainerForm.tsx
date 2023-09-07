@@ -5,10 +5,25 @@ import { useForm, FormProvider } from 'react-hook-form'
 
 import { Button } from '@/components/Forms'
 
+import { subscriptionFormResolver } from '../../validations/subscriptionValidationForm'
+
 type ContainerProps = PropsWithChildren
 
+const defaultValues = {
+  taxpayerRegistration: '',
+  name: '',
+  gender: '',
+  maritalStatus: '',
+  birthDate: '',
+}
+
+export type SubscriptionFormType = typeof defaultValues
+
 export const Container = ({ children }: ContainerProps) => {
-  const methods = useForm()
+  const methods = useForm({
+    defaultValues,
+    resolver: subscriptionFormResolver,
+  })
 
   const onSubmitHandler = (values: any) => {
     console.log(values)
