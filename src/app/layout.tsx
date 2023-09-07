@@ -17,7 +17,7 @@ export default function RootLayout({
       <body className="flex flex-col h-screen">
         <Header>
           <SideMenu />
-          <div className="flex-grow py-4 pr-4">{children}</div>
+          <div className="flex-grow pb-4 pr-4">{children}</div>
         </Header>
       </body>
     </html>
