@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import '../styles/global.css'
+import { SideMenu } from '@/components/Sidemenu'
 
 export const metadata = {
   title: 'Seleção simplificada',
@@ -13,8 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="h-screen">
-        <Header>{children}</Header>
+      <body className="flex flex-col h-screen">
+        <Header>
+          <SideMenu />
+          <div className="flex-grow py-4 pr-4">{children}</div>
+        </Header>
       </body>
     </html>
   )
