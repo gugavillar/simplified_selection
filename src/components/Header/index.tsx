@@ -4,7 +4,7 @@ import { Fragment, PropsWithChildren } from 'react'
 export const Header = ({ children }: PropsWithChildren) => {
   return (
     <Fragment>
-      <header className="w-full h-32 flex align-middle justify-center">
+      <header className="h-32 flex align-middle justify-center">
         <div className="p-4">
           <Image
             src="/assets/brasao.png"
@@ -15,7 +15,7 @@ export const Header = ({ children }: PropsWithChildren) => {
           />
         </div>
       </header>
-      <main className="w-full">{children}</main>
+      <main className="flex flex-grow gap-4">{children}</main>
     </Fragment>
   )
 }
