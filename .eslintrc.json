@@ -1,3 +1,36 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["@rocketseat/eslint-config/next", "next/core-web-vitals"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "external",
+          ["builtin", "internal"],
+          ["parent", "sibling"],
+          ["object","type"],
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react,react-dom/**,next/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "{@/**}",
+            "group": "internal",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
 }
