@@ -6,10 +6,11 @@ type SelectProps = React.InputHTMLAttributes<HTMLSelectElement> & {
     label: string
     value: string | number
   }>
+  error?: string
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ labelField, optionsToSelection, ...props }: SelectProps, ref) => {
+  ({ labelField, optionsToSelection, error, ...props }: SelectProps, ref) => {
     return (
       <div className={`w-full ${props.className}`}>
         <label
@@ -21,10 +22,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
         <select
           {...props}
-          className="mt-1 w-full rounded-md border-gray-200 shadow-sm h-10"
+          className={`my-1 w-full rounded-md border-gray-200 shadow-sm h-10 ${
+            error && 'border-red-500 focus:ring-red-500 focus:border-red-500'
+          }`}
           ref={ref}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             {props.placeholder}
           </option>
           {optionsToSelection?.map((option) => (
@@ -33,6 +36,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             </option>
           ))}
         </select>
+        {error ? <p className="text-xs text-red-500">{error}</p> : null}
       </div>
     )
   },

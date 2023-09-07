@@ -4,10 +4,11 @@ import { PatternFormat, PatternFormatProps } from 'react-number-format'
 
 type MaskedInputProps = PatternFormatProps & {
   labelField: string
+  error?: string
 }
 
 export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
-  ({ labelField, format, ...props }: MaskedInputProps, ref) => {
+  ({ labelField, format, error, ...props }: MaskedInputProps, ref) => {
     return (
       <div className={`w-full ${props.className}`}>
         <label
@@ -18,10 +19,13 @@ export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
         </label>
         <PatternFormat
           {...props}
-          className="mt-1 w-full rounded-md border-gray-200 shadow-sm h-10"
+          className={`my-1 w-full rounded-md border-gray-200 shadow-sm h-10 ${
+            error && 'border-red-500 focus:ring-red-500 focus:border-red-500'
+          }`}
           format={format}
           getInputRef={ref}
         />
+        {error ? <p className="text-xs text-red-500">{error}</p> : null}
       </div>
     )
   },
