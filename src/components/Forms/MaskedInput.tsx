@@ -1,11 +1,13 @@
 import { forwardRef } from 'react'
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+import { PatternFormat, PatternFormatProps } from 'react-number-format'
+
+type MaskedInputProps = PatternFormatProps & {
   labelField: string
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ labelField, ...props }: InputProps, ref) => {
+export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
+  ({ labelField, format, ...props }: MaskedInputProps, ref) => {
     return (
       <div className={`w-full ${props.className}`}>
         <label
@@ -14,15 +16,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         >
           {labelField}
         </label>
-
-        <input
+        <PatternFormat
           {...props}
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm h-10"
-          ref={ref}
+          format={format}
+          getInputRef={ref}
         />
       </div>
     )
   },
 )
 
-Input.displayName = 'Input'
+MaskedInput.displayName = 'MaskedInput'
