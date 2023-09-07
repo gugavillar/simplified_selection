@@ -7,7 +7,7 @@ type UserPlusProps = {
 export const UserPlus = ({
   width = '32',
   height = '32',
-  currentColor = 'black',
+  currentColor = 'white',
 }: UserPlusProps) => {
   return (
     <svg

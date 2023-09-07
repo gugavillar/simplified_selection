@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-base {
+    @apply inline-block rounded bg-matisse-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-matisse-500
+  }
+  .btn-border {
+    @apply inline-block rounded border border-current px-8 py-3 text-sm font-medium text-matisse-600 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:text-matisse-500
+  }
+}

@@ -7,7 +7,7 @@ type SignOutProps = {
 export const SignOut = ({
   width = '32',
   height = '32',
-  currentColor = 'black',
+  currentColor = 'white',
 }: SignOutProps) => {
   return (
     <svg

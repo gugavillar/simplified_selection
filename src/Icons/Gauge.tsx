@@ -7,7 +7,7 @@ type GaugeProps = {
 export const Gauge = ({
   width = '32',
   height = '32',
-  currentColor = 'black',
+  currentColor = 'white',
 }: GaugeProps) => {
   return (
     <svg
