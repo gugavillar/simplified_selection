@@ -9,8 +9,12 @@ type MaskedInputProps = PatternFormatProps & {
 
 export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
   ({ labelField, format, error, ...props }: MaskedInputProps, ref) => {
+    const classes = props.className ?? ''
+    const errorClasses = error
+      ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+      : ''
     return (
-      <div className={`w-full ${props.className}`}>
+      <div className={`${classes}`}>
         <label
           htmlFor={props.id}
           className="block text-sm font-medium text-gray-500"
@@ -19,9 +23,7 @@ export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
         </label>
         <PatternFormat
           {...props}
-          className={`my-1 w-full rounded-md border-gray-200 shadow-sm h-10 ${
-            error && 'border-red-500 focus:ring-red-500 focus:border-red-500'
-          }`}
+          className={`my-1 rounded-md border-gray-200 shadow-sm h-10 ${classes} ${errorClasses}`}
           format={format}
           getInputRef={ref}
         />

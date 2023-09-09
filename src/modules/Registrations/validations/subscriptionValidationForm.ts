@@ -1,20 +1,41 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { validateCPF } from 'validations-br'
 import * as yup from 'yup'
 
+import {
+  dateSchema,
+  phoneSchema,
+  taxpayerRegistrationSchema,
+  zipCodeSchema,
+} from '@/helpers'
+
+import { GENDER, MARITAL_STATUS } from '../constants/subscriptionFormConstants'
+
 yup.setLocale({
-  mixed: { required: 'Campo obrigatório.' },
-  string: { email: 'E-mail inválido.' },
+  mixed: { required: 'Campo obrigatório' },
+  string: { email: 'E-mail inválido' },
 })
 
 export const subscriptionFormResolver = yupResolver(
   yup.object().shape({
-    taxpayerRegistration: yup
+    taxpayerRegistration: taxpayerRegistrationSchema(),
+    name: yup.string().required(),
+    gender: yup
       .string()
       .required()
-      .test('valid-taxpayerRegistration', 'CPF inválido', (value) =>
-        validateCPF(value),
+      .oneOf(
+        [...GENDER.map((gender) => gender.value)],
+        'Selecione uma das opções',
       ),
-    gender: yup.string().required(),
+    maritalStatus: yup
+      .string()
+      .required()
+      .oneOf(
+        [...MARITAL_STATUS.map((status) => status.value)],
+        'Selecione uma das opções',
+      ),
+    dateOfBirth: dateSchema(),
+    phone: phoneSchema(),
+    email: yup.string().email().required(),
+    zipCode: zipCodeSchema(),
   }),
 )

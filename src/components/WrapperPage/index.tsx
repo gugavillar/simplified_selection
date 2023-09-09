@@ -8,7 +8,9 @@ export const WrapperPage = ({ children, title }: WrapperPageProps) => {
   return (
     <div className="mx-auto max-w-4xl">
       <div className="mx-auto max-w-lg text-center">
-        <h1 className="text-xl font-bold sm:text-3xl mb-6">{title}</h1>
+        <h1 className="text-matisse-600 text-xl font-bold sm:text-3xl mb-6">
+          {title}
+        </h1>
       </div>
       {children}
     </div>

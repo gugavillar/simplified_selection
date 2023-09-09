@@ -4,19 +4,10 @@ import { useFormContext, Controller } from 'react-hook-form'
 import { Input, Select, MaskedInput } from '@/components/Forms'
 
 import { SubscriptionFormType } from './ContainerForm'
-
-const GENDER = [
-  { label: 'Masculino', value: 'Masculino' },
-  { label: 'Feminino', value: 'Feminino' },
-]
-
-const MARITAL_STATUS = [
-  { label: 'Solteiro(a)', value: 'Solteiro(a)' },
-  { label: 'Casado(a)', value: 'Casado(a)' },
-  { label: 'Separado(a)', value: 'Separado(a)' },
-  { label: 'Divorciado(a)', value: 'Divorciado(a)' },
-  { label: 'Viúvo(a)', value: 'Viúvo(a)' },
-]
+import {
+  GENDER,
+  MARITAL_STATUS,
+} from '../../constants/subscriptionFormConstants'
 
 export const PersonDataFields = () => {
   const {
@@ -24,7 +15,6 @@ export const PersonDataFields = () => {
     control,
     formState: { errors },
   } = useFormContext<SubscriptionFormType>()
-  console.log(errors)
   return (
     <div className="space-y-4">
       <div className="flex gap-6 w-full max-md:flex-col">
@@ -35,23 +25,26 @@ export const PersonDataFields = () => {
             <MaskedInput
               error={errors.taxpayerRegistration?.message}
               placeholder="000.000.000-00"
-              className="w-60 max-md:w-full"
+              className="w-40 max-md:w-full"
               format="###.###.###-##"
               labelField="CPF"
+              id="taxpayerRegistration"
               {...field}
             />
           )}
         />
         <Input
+          className="w-full"
           placeholder="Nome completo"
           labelField="Nome completo"
           id="name"
+          error={errors.name?.message}
           {...register('name')}
         />
       </div>
       <div className="flex gap-6 w-full max-md:flex-col">
         <Select
-          className="w-1/2 max-md:w-full"
+          className="w-full max-md:w-full"
           defaultValue=""
           placeholder="Selecione o sexo"
           labelField="Gênero"
@@ -61,26 +54,54 @@ export const PersonDataFields = () => {
           {...register('gender')}
         />
         <Select
-          className="w-1/2 max-md:w-full"
+          className="w-full max-md:w-full"
           defaultValue=""
           placeholder="Selecione o estado civil"
           labelField="Estado civil"
           id="maritalStatus"
+          error={errors.maritalStatus?.message}
           optionsToSelection={MARITAL_STATUS}
           {...register('maritalStatus')}
         />
         <Controller
-          name="birthDate"
+          name="dateOfBirth"
           control={control}
           render={({ field }) => (
             <MaskedInput
               placeholder="00/00/0000"
-              className="w-48 max-md:w-full"
+              className="w-40 max-md:w-full"
               format="##/##/####"
+              error={errors.dateOfBirth?.message}
               labelField="Data de nascimento"
+              id="dateOfBirth"
               {...field}
             />
           )}
+        />
+      </div>
+      <div className="flex gap-6 w-full max-md:flex-col">
+        <Controller
+          name="phone"
+          control={control}
+          render={({ field }) => (
+            <MaskedInput
+              placeholder="(00) 00000-0000"
+              className="w-48 max-md:w-full"
+              format="(##) #####-####"
+              error={errors.phone?.message}
+              labelField="Celular"
+              id="phone"
+              {...field}
+            />
+          )}
+        />
+        <Input
+          className="w-full"
+          placeholder="Email"
+          labelField="Email"
+          id="email"
+          error={errors.email?.message}
+          {...register('email')}
         />
       </div>
     </div>

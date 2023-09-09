@@ -14,7 +14,14 @@ const defaultValues = {
   name: '',
   gender: '',
   maritalStatus: '',
-  birthDate: '',
+  dateOfBirth: '',
+  phone: '',
+  email: '',
+  zipCode: '',
+  address: '',
+  number: '',
+  addOnAddress: '',
+  neighborhood: '',
 }
 
 export type SubscriptionFormType = typeof defaultValues

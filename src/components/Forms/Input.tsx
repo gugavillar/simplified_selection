@@ -7,8 +7,12 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ labelField, error, ...props }: InputProps, ref) => {
+    const classes = props.className ?? ''
+    const errorClasses = error
+      ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
+      : ''
     return (
-      <div className={`w-full ${props.className}`}>
+      <div className={`${classes}`}>
         <label
           htmlFor={props.id}
           className="block text-sm font-medium text-gray-500"
@@ -18,9 +22,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         <input
           {...props}
-          className={`my-1 w-full rounded-md border-gray-200 shadow-sm h-10 ${
-            error && 'border-red-500 focus:ring-red-500 focus:border-red-500'
-          }`}
+          className={`my-1 rounded-md border-gray-200 shadow-sm h-10 ${classes} ${errorClasses}`}
           ref={ref}
         />
         {error ? <p className="text-xs text-red-500">{error}</p> : null}
