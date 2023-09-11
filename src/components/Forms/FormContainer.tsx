@@ -11,13 +11,22 @@ import {
   ValidationMode,
 } from 'react-hook-form'
 
-import { Button } from '@/components'
+import { ButtonsContainer } from './ButtonsContainer'
+
+export type StepsForm = {
+  isClearButton: boolean
+  isFirstStep: boolean
+  isLastStep: boolean
+  handleNextStep: () => void
+  handlePreviousStep: () => void
+}
 
 type ContainerProps<T extends FieldValues> = PropsWithChildren & {
   defaultValues: DefaultValues<T>
   resolver: Resolver<T>
   handleSubmit: SubmitHandler<T>
   mode?: keyof ValidationMode
+  stepForm?: StepsForm
 }
 
 export const FormContainer = <T extends FieldValues>({
@@ -26,6 +35,7 @@ export const FormContainer = <T extends FieldValues>({
   handleSubmit,
   resolver,
   mode = 'onSubmit',
+  stepForm,
 }: ContainerProps<T>) => {
   const methods = useForm<T>({
     defaultValues,
@@ -33,9 +43,11 @@ export const FormContainer = <T extends FieldValues>({
     mode,
   })
 
-  const handleClearForm = () => methods.reset()
+  const handleClearForm = () =>
+    methods.reset({ ...defaultValues }, { keepDefaultValues: true })
 
   const onSubmitHandler = (values: T) => {
+    if (stepForm && !stepForm.isLastStep) return stepForm.handleNextStep()
     handleSubmit(values)
     handleClearForm()
   }
@@ -44,12 +56,16 @@ export const FormContainer = <T extends FieldValues>({
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmitHandler)}>
         {children}
-        <div className="flex gap-6 mt-4 justify-end">
-          <Button onClick={handleClearForm} variant="border" type="button">
-            Limpar
-          </Button>
-          <Button type="submit">Cadastrar</Button>
-        </div>
+        <ButtonsContainer
+          handleClearForm={handleClearForm}
+          {...(stepForm && {
+            stepsForm: {
+              ...stepForm,
+              trigger: methods.trigger,
+              errors: !methods.formState.isValid,
+            },
+          })}
+        />
       </form>
     </FormProvider>
   )
