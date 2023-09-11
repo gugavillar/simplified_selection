@@ -28,7 +28,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
         >
           <div className="flex items-center justify-between">
             <p className="text-gray-800">{label}</p>
-            <Check />
+            <Check className="hidden text-matisse-600" />
           </div>
         </label>
 

@@ -1,13 +1,19 @@
 import { IconPropsType } from '@/types/common'
 
-type CheckProps = IconPropsType
+type CheckProps = IconPropsType & {
+  className: string
+}
 
-export const Check = ({ width = '20', height = '20' }: CheckProps) => {
+export const Check = ({
+  width = '20',
+  height = '20',
+  className,
+}: CheckProps) => {
   return (
     <svg
       width={width}
       height={height}
-      className="hidden text-matisse-600"
+      className={className}
       viewBox="0 0 20 20"
       fill="currentColor"
     >
