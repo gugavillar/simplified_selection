@@ -7,8 +7,7 @@ import {
   taxpayerRegistrationSchema,
   zipCodeSchema,
 } from '@/helpers'
-
-import { GENDER, MARITAL_STATUS } from '../constants/subscriptionFormConstants'
+import { GENDER, MARITAL_STATUS } from '@/modules/Registrations/constants'
 
 yup.setLocale({
   mixed: { required: 'Campo obrigatório' },
@@ -37,5 +36,11 @@ export const subscriptionFormResolver = yupResolver(
     phone: phoneSchema(),
     email: yup.string().email().required(),
     zipCode: zipCodeSchema(),
+    address: yup.string().required(),
+    addressNumber: yup.string().required(),
+    addOnAddress: yup.string().default(''),
+    neighborhood: yup.string().required(),
+    state: yup.string().required(),
+    city: yup.string().required(),
   }),
 )

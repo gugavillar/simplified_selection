@@ -1,6 +1,5 @@
-import { Header } from '@/components/Header'
 import '../styles/global.css'
-import { SideMenu } from '@/components/Sidemenu'
+import { SideMenu, Header } from '@/components'
 
 export const metadata = {
   title: 'Seleção simplificada',

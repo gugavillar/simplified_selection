@@ -1,17 +1,28 @@
-import { WrapperPage } from '@/components/WrapperPage'
-import { AddressDataFields } from '@/modules/Registrations/components/Form/AddressDataFields'
-import { Container } from '@/modules/Registrations/components/Form/ContainerForm'
-import { PersonDataFields } from '@/modules/Registrations/components/Form/PersonDataFields'
+import { WrapperPage } from '@/components'
+import { sortSelectOptions } from '@/helpers'
+import { PageContent } from '@/modules/Registrations/content'
+import { getBrazilUf } from '@/services'
 
-const Subscription = () => {
+const getStates = async () => {
+  try {
+    const response = await getBrazilUf()
+    const formattedResponse = response
+      .map((uf) => ({
+        label: `${uf.sigla} - ${uf.nome}`,
+        value: uf.sigla,
+      }))
+      .sort(sortSelectOptions)
+    return formattedResponse
+  } catch {
+    return { message: 'Falha ao carregar os estados' }
+  }
+}
+
+export default async function Subscription() {
+  const states = await getStates()
   return (
     <WrapperPage title="Formulário de inscrição">
-      <Container>
-        <PersonDataFields />
-        <AddressDataFields />
-      </Container>
+      <PageContent states={states} />
     </WrapperPage>
   )
 }
-
-export default Subscription

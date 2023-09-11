@@ -1,15 +1,16 @@
 {
   "extends": ["@rocketseat/eslint-config/next", "next/core-web-vitals"],
   "rules": {
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
     "@typescript-eslint/no-explicit-any": "off",
     "import/order": [
       "error",
       {
         "groups": [
           "external",
-          ["builtin", "internal"],
-          ["parent", "sibling"],
-          ["object","type"],
+          ["internal"],
+          ["builtin", "parent", "sibling"],
+          ["object", "type"],
           "index"
         ],
         "pathGroups": [

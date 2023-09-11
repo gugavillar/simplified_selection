@@ -1,8 +1,6 @@
-type SignOutProps = {
-  width?: string
-  height?: string
-  currentColor?: string
-}
+import { IconPropsType } from '@/types/common'
+
+type SignOutProps = IconPropsType
 
 export const SignOut = ({
   width = '32',

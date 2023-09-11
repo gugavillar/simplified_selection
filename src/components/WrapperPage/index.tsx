@@ -1,4 +1,6 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, Suspense } from 'react'
+
+import { LoaderContent } from '../LoaderContent'
 
 type WrapperPageProps = PropsWithChildren & {
   title: string
@@ -12,7 +14,7 @@ export const WrapperPage = ({ children, title }: WrapperPageProps) => {
           {title}
         </h1>
       </div>
-      {children}
+      <Suspense fallback={<LoaderContent />}>{children}</Suspense>
     </div>
   )
 }

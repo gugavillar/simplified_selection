@@ -1,8 +1,6 @@
-type UserPlusProps = {
-  width?: string
-  height?: string
-  currentColor?: string
-}
+import { IconPropsType } from '@/types/common'
+
+type UserPlusProps = IconPropsType
 
 export const UserPlus = ({
   width = '32',

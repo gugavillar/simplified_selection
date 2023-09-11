@@ -1,13 +1,9 @@
 'use client'
 import { useFormContext, Controller } from 'react-hook-form'
 
-import { Input, Select, MaskedInput } from '@/components/Forms'
-
-import { SubscriptionFormType } from './ContainerForm'
-import {
-  GENDER,
-  MARITAL_STATUS,
-} from '../../constants/subscriptionFormConstants'
+import { Input, Select, MaskedInput } from '@/components'
+import { GENDER, MARITAL_STATUS } from '@/modules/Registrations/constants'
+import { SubscriptionFormType } from '@/modules/Registrations/content'
 
 export const PersonDataFields = () => {
   const {

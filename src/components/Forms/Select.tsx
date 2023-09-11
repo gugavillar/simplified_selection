@@ -1,11 +1,10 @@
 import { forwardRef } from 'react'
 
+import { SelectionOptionsType } from '@/types/common'
+
 type SelectProps = React.InputHTMLAttributes<HTMLSelectElement> & {
   labelField: string
-  optionsToSelection: Array<{
-    label: string
-    value: string | number
-  }>
+  optionsToSelection: SelectionOptionsType
   error?: string
 }
 
@@ -26,7 +25,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
         <select
           {...props}
-          className={`my-1 rounded-md border-gray-200 shadow-sm h-10 ${classes} ${errorClasses}`}
+          className={`my-1 rounded-md border-gray-200 shadow-sm h-10 disabled:bg-gray-300 ${classes} ${errorClasses}`}
           ref={ref}
         >
           <option value="" disabled>

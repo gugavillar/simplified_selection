@@ -1,7 +1,4 @@
-type ButtonBaseProps = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
+type ButtonBaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'base' | 'border'
 }
 

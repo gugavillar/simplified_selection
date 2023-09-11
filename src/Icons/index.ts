@@ -1,3 +1,5 @@
 export * from './Gauge'
 export * from './UserPlus'
 export * from './SignOut'
+export * from './Close'
+export * from './Check'

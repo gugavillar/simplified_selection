@@ -10,3 +10,7 @@ export const MARITAL_STATUS = [
   { label: 'Divorciado(a)', value: 'Divorciado(a)' },
   { label: 'Viúvo(a)', value: 'Viúvo(a)' },
 ]
+
+export const ROLE_OPTIONS = [
+  { label: 'Assistente administrativo', value: 1, id: 'field-administrative' },
+]

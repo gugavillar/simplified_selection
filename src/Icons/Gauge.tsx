@@ -1,8 +1,6 @@
-type GaugeProps = {
-  width?: string
-  height?: string
-  currentColor?: string
-}
+import { IconPropsType } from '@/types/common'
+
+type GaugeProps = IconPropsType
 
 export const Gauge = ({
   width = '32',

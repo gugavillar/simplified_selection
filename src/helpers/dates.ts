@@ -1,7 +1,7 @@
 import { parse, format, isValid } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
-const regexDate = /\d{2}\/\d{2}\/\d{4}/
+const regexDatePTBR = /\d{2}\/\d{2}\/\d{4}/
 
 const getNumberDate = (date: string, formatString: string) => {
   return parse(date, formatString, new Date(), {
@@ -10,7 +10,7 @@ const getNumberDate = (date: string, formatString: string) => {
 }
 
 export const formatterDate = (date: string) => {
-  if (!date?.match(regexDate)?.[0]) return
+  if (!date?.match(regexDatePTBR)?.[0]) return
 
   const numberedDate = getNumberDate(date, 'dd/MM/yyyy')
   if (isNaN(numberedDate)) return
