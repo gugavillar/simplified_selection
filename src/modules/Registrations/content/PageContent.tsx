@@ -8,7 +8,7 @@ import { FormContainer } from '@/components/Forms/FormContainer'
 import {
   SubscriptionsFields,
   RoleSelection,
-  UploadDataFields,
+  UploadDataField,
 } from '@/modules/Registrations/components'
 import { ROLE_OPTIONS } from '@/modules/Registrations/constants'
 import {
@@ -41,8 +41,10 @@ const roleSubscription = {
 
 const uploadSubscriptionDocuments: {
   upload: Array<File>
+  documents: Array<File>
 } = {
   upload: [],
+  documents: [],
 }
 
 type ContentPageProps = {
@@ -83,7 +85,7 @@ export const PageContent = ({ states }: ContentPageProps) => {
       },
       {
         labelStep: 'Documentos',
-        children: <UploadDataFields />,
+        children: <UploadDataField />,
       },
     ],
     [states],

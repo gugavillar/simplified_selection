@@ -9,16 +9,17 @@ import {
 
 import { Check, Upload } from '@/Icons'
 
-type DropzoneInputFieldProps = DropzoneInputProps & {
+type DropzoneInputFieldProps<T> = DropzoneInputProps & {
   label: string
   options?: DropzoneOptions
   error?: string
-  handleClearValue: () => void
-  handleSetError: () => void
-  handleSetValue: (files: Array<File>) => void
+  handleClearValue: (name: T) => void
+  handleSetError: (name: T) => void
+  handleSetValue: (files: Array<File>, name: T) => void
+  fieldName: T
 }
 
-export const DropzoneInputField = ({
+export const DropzoneInputField = <T,>({
   handleClearValue,
   handleSetError,
   handleSetValue,
@@ -26,23 +27,24 @@ export const DropzoneInputField = ({
   error,
   id,
   label,
+  fieldName,
   onChange,
-}: DropzoneInputFieldProps) => {
+}: DropzoneInputFieldProps<T>) => {
   const onDrop = useCallback(
     (acceptedFiles: Array<File>, rejectionFiles: Array<FileRejection>) => {
       if (rejectionFiles?.length) {
         return rejectionFiles.forEach(({ errors }) =>
           errors.forEach((erro) => {
             if (erro.code === 'file-invalid-type') {
-              handleClearValue()
-              return handleSetError()
+              handleClearValue(fieldName)
+              return handleSetError(fieldName)
             }
           }),
         )
       }
-      handleSetValue(acceptedFiles)
+      handleSetValue(acceptedFiles, fieldName)
     },
-    [handleClearValue, handleSetError, handleSetValue],
+    [handleClearValue, handleSetError, handleSetValue, fieldName],
   )
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     onDrop,
