@@ -12,5 +12,24 @@ export const MARITAL_STATUS = [
 ]
 
 export const ROLE_OPTIONS = [
-  { label: 'Assistente administrativo', value: 1, id: 'field-administrative' },
+  {
+    label: 'Assistente administrativo',
+    value: '1',
+    id: 'field-administrative',
+  },
+  {
+    label: 'Aux. serviços gerais',
+    value: '2',
+    id: 'field-general',
+  },
+  {
+    label: 'Motorista',
+    value: '3',
+    id: 'field-driver',
+  },
+  {
+    label: 'Recepcionista',
+    value: '4',
+    id: 'field-receptionists',
+  },
 ]
