@@ -44,3 +44,9 @@ export const subscriptionFormResolver = yupResolver(
     city: yup.string().required(),
   }),
 )
+
+export const roleSubscriptionResolver = yupResolver(
+  yup.object().shape({
+    role: yup.string().required(),
+  }),
+)
