@@ -50,3 +50,9 @@ export const roleSubscriptionResolver = yupResolver(
     role: yup.string().required(),
   }),
 )
+
+export const uploadSubscriptionResolver = yupResolver(
+  yup.object().shape({
+    upload: yup.array().min(1, 'Necessário ter no mínimo 1 arquivo'),
+  }),
+)

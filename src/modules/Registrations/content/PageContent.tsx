@@ -6,14 +6,15 @@ import { Resolver } from 'react-hook-form'
 import { Steps } from '@/components'
 import { FormContainer } from '@/components/Forms/FormContainer'
 import {
-  AddressDataFields,
-  PersonDataFields,
+  SubscriptionsFields,
   RoleSelection,
+  UploadDataFields,
 } from '@/modules/Registrations/components'
 import { ROLE_OPTIONS } from '@/modules/Registrations/constants'
 import {
   roleSubscriptionResolver,
   subscriptionFormResolver,
+  uploadSubscriptionResolver,
 } from '@/modules/Registrations/validations'
 import { SelectionOptionsType } from '@/types/common'
 
@@ -38,17 +39,27 @@ const roleSubscription = {
   role: '',
 }
 
+const uploadSubscriptionDocuments: {
+  upload: Array<File>
+} = {
+  upload: [],
+}
+
 type ContentPageProps = {
   states: SelectionOptionsType | { message: string }
 }
 
 export declare type SubscriptionFormType = typeof formSubscription
 export declare type RoleSubscriptionType = typeof roleSubscription
+export declare type UploadSubscriptionDocumentsType =
+  typeof uploadSubscriptionDocuments
 
-type ResolverType = Resolver<RoleSubscriptionType | SubscriptionFormType>
+type ResolverType = Resolver<
+  RoleSubscriptionType | SubscriptionFormType | UploadSubscriptionDocumentsType
+>
 
 export const PageContent = ({ states }: ContentPageProps) => {
-  const [userStep, setUserStep] = useState(1)
+  const [userStep, setUserStep] = useState(3)
 
   const onSubmitHandler = (values: any) => {
     console.log(values)
@@ -68,26 +79,32 @@ export const PageContent = ({ states }: ContentPageProps) => {
       },
       {
         labelStep: 'Dados pessoais',
-        children: (
-          <>
-            <PersonDataFields />
-            <AddressDataFields states={states} />
-          </>
-        ),
+        children: <SubscriptionsFields states={states} />,
+      },
+      {
+        labelStep: 'Documentos',
+        children: <UploadDataFields />,
       },
     ],
     [states],
   )
 
   const resolver = () => {
-    if (userStep === 1)
+    if (userStep === 1) {
       return {
         resolver: roleSubscriptionResolver,
         defaultValues: roleSubscription,
       }
+    }
+    if (userStep === 2) {
+      return {
+        resolver: subscriptionFormResolver,
+        defaultValues: formSubscription,
+      }
+    }
     return {
-      resolver: subscriptionFormResolver,
-      defaultValues: formSubscription,
+      resolver: uploadSubscriptionResolver,
+      defaultValues: uploadSubscriptionDocuments,
     }
   }
 
