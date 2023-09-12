@@ -22,10 +22,16 @@ const formSubscription = {
   taxpayerRegistration: '',
   name: '',
   gender: '',
-  maritalStatus: '',
+  race: '',
   dateOfBirth: '',
   phone: '',
   email: '',
+  mother: '',
+  rg: '',
+  expeditionDate: '',
+  pcd: '',
+  nis: '',
+  maritalStatus: '',
   zipCode: '',
   address: '',
   addressNumber: '',
@@ -112,6 +118,7 @@ export const PageContent = ({ states }: ContentPageProps) => {
 
   return (
     <FormContainer
+      mode="onChange"
       handleSubmit={onSubmitHandler}
       defaultValues={resolver?.defaultValues}
       resolver={resolver?.resolver as ResolverType}

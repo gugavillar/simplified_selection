@@ -7,10 +7,12 @@ export const dateSchema = () =>
   yup
     .string()
     .required()
-    .transform((value) => formatterDate(value))
     .test('isValidDate', 'Digite uma data válida', (value) =>
       isValidDate(value),
     )
+
+export const transformDate = () =>
+  yup.string().transform((value) => formatterDate(value))
 
 export const phoneSchema = () =>
   yup

@@ -17,6 +17,11 @@ export const ButtonsContainer = <T extends FieldValues>({
   stepsForm,
 }: ButtonsContainerProps<T>) => {
   if (stepsForm) {
+    const handleNextStep = () => {
+      stepsForm.trigger()
+      if (stepsForm.errors) return
+      stepsForm.handleNextStep()
+    }
     return (
       <div className="flex gap-6 mt-4 justify-end">
         {stepsForm?.isClearButton ? (
@@ -29,9 +34,15 @@ export const ButtonsContainer = <T extends FieldValues>({
             Voltar
           </Button>
         ) : null}
-        <Button key="submitStep" type="submit">
-          {!stepsForm.isLastStep ? 'Avançar' : 'Cadastrar'}
-        </Button>
+        {!stepsForm.isLastStep ? (
+          <Button key="nextStep" type="button" onClick={handleNextStep}>
+            Avançar
+          </Button>
+        ) : (
+          <Button key="submitStep" type="submit">
+            Cadastrar
+          </Button>
+        )}
       </div>
     )
   }

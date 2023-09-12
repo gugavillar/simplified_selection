@@ -47,7 +47,6 @@ export const FormContainer = <T extends FieldValues>({
     methods.reset({ ...defaultValues }, { keepDefaultValues: true })
 
   const onSubmitHandler = (values: T) => {
-    if (!stepForm?.isLastStep) return stepForm?.handleNextStep()
     handleSubmit(values)
     handleClearForm()
   }

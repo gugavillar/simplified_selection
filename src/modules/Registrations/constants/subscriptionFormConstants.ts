@@ -11,6 +11,19 @@ export const MARITAL_STATUS = [
   { label: 'Viúvo(a)', value: 'Viúvo(a)' },
 ]
 
+export const COLOR_RACE = [
+  { label: 'Branco', value: 'Branco' },
+  { label: 'Preto', value: 'Preto' },
+  { label: 'Pardo', value: 'Pardo' },
+  { label: 'Indígena', value: 'Indígena' },
+  { label: 'Amarelo', value: 'Amarelo' },
+]
+
+export const YES_OR_NO = [
+  { label: 'Sim', value: 'Sim' },
+  { label: 'Não', value: 'Não' },
+]
+
 export const ROLE_OPTIONS = [
   {
     label: 'Assistente administrativo',
@@ -31,5 +44,17 @@ export const ROLE_OPTIONS = [
     label: 'Recepcionista',
     value: '4',
     id: 'field-receptionists',
+  },
+  {
+    label: 'Nutricionista',
+    value: '5',
+    id: 'field-nutricionists',
+    subLabel: 'Secretaria de educação',
+  },
+  {
+    label: 'Nutricionista',
+    value: '6',
+    id: 'field-healhNutricionist',
+    subLabel: 'Secretaria de saúde e bem estar',
   },
 ]

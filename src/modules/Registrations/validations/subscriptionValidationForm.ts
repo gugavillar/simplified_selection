@@ -5,9 +5,15 @@ import {
   dateSchema,
   phoneSchema,
   taxpayerRegistrationSchema,
+  transformDate,
   zipCodeSchema,
 } from '@/helpers'
-import { GENDER, MARITAL_STATUS } from '@/modules/Registrations/constants'
+import {
+  COLOR_RACE,
+  GENDER,
+  MARITAL_STATUS,
+  YES_OR_NO,
+} from '@/modules/Registrations/constants'
 
 yup.setLocale({
   mixed: { required: 'Campo obrigatório' },
@@ -25,6 +31,19 @@ export const subscriptionFormResolver = yupResolver(
         [...GENDER.map((gender) => gender.value)],
         'Selecione uma das opções',
       ),
+    race: yup
+      .string()
+      .required()
+      .oneOf(
+        [...COLOR_RACE.map((gender) => gender.value)],
+        'Selecione uma das opções',
+      ),
+    dateOfBirth: dateSchema(),
+    phone: phoneSchema(),
+    email: yup.string().email().required(),
+    mother: yup.string().required(),
+    rg: yup.string().trim().required(),
+    expeditionDate: dateSchema(),
     maritalStatus: yup
       .string()
       .required()
@@ -32,9 +51,14 @@ export const subscriptionFormResolver = yupResolver(
         [...MARITAL_STATUS.map((status) => status.value)],
         'Selecione uma das opções',
       ),
-    dateOfBirth: dateSchema(),
-    phone: phoneSchema(),
-    email: yup.string().email().required(),
+    pcd: yup
+      .string()
+      .required()
+      .oneOf(
+        [...YES_OR_NO.map((status) => status.value)],
+        'Selecione uma das opções',
+      ),
+    nis: yup.string().trim(),
     zipCode: zipCodeSchema(),
     address: yup.string().required(),
     addressNumber: yup.string().required(),
@@ -54,9 +78,12 @@ export const roleSubscriptionResolver = yupResolver(
 export const uploadSubscriptionResolver = yupResolver(
   yup.object().shape({
     taxpayerRegistration: taxpayerRegistrationSchema(),
-    dateOfBirth: dateSchema(),
+    dateOfBirth: transformDate(),
     phone: phoneSchema(),
     zipCode: zipCodeSchema(),
+    expeditionDate: transformDate(),
+    rg: yup.string().trim().required(),
+    nis: yup.string().trim(),
     upload: yup.array().required().min(1, 'Necessário ter no mínimo 1 arquivo'),
     documents: yup
       .array()

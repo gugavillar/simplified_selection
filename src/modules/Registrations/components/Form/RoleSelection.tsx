@@ -9,6 +9,7 @@ type RoleSelectionProps = {
   registerName: 'role'
   radioOptions: Array<{
     label: string
+    subLabel?: string
     value: string | number
     id: string
   }>
@@ -34,8 +35,9 @@ export const RoleSelection = ({
             key={option.id}
             id={option.id}
             label={option.label}
-            {...register(registerName)}
             value={option.value}
+            {...register(registerName)}
+            {...(option.subLabel && { subLabel: option.subLabel })}
           />
         ))}
       </div>

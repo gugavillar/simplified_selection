@@ -21,7 +21,9 @@ export const formatterDate = (date: string) => {
 export const isValidDate = (date: string | undefined) => {
   if (!date) return false
 
-  const numberedDate = getNumberDate(date, 'yyyy-MM-dd')
+  if (!date?.match(regexDatePTBR)?.[0]) return false
+
+  const numberedDate = getNumberDate(date, 'dd/MM/yyyy')
   if (isNaN(numberedDate)) return false
 
   return isValid(new Date(numberedDate))

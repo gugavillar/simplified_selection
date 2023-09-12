@@ -4,11 +4,12 @@ import { Check } from '@/Icons'
 
 type RadioButtonProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string
+  subLabel?: string
   error?: string
 }
 
 export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
-  ({ label, error, ...props }: RadioButtonProps, ref) => {
+  ({ label, error, subLabel, ...props }: RadioButtonProps, ref) => {
     const errorClasses = error
       ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
       : ''
@@ -30,6 +31,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
             <p className="text-gray-800">{label}</p>
             <Check className="hidden text-matisse-600" />
           </div>
+          {subLabel ? <p className="mt-1 text-gray-400">{subLabel}</p> : null}
         </label>
 
         {error ? <p className="text-xs text-red-500 mt-1">{error}</p> : null}

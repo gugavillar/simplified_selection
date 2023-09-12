@@ -11,7 +11,7 @@ export const MENU_LINKS = [
     children: <Gauge />,
   },
   {
-    label: 'Candidato',
+    label: 'Inscrição',
     link: '/inscricao',
     children: <UserPlus />,
   },
