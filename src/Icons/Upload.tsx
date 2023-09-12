@@ -5,7 +5,7 @@ type UploadProps = IconPropsType
 export const Upload = ({ width = '32', height = '32' }: UploadProps) => {
   return (
     <svg
-      className="mb-4 text-gray-500 group-hover:text-white"
+      className="mb-4 text-matisse-600 group-hover:text-white"
       fill="none"
       viewBox="0 0 20 16"
       width={width}

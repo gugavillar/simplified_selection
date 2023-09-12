@@ -1,6 +1,6 @@
 export const StepCheckIcon = () => {
   return (
-    <span className="rounded-full bg-blue-600 text-white">
+    <span className="rounded-full bg-matisse-600 text-white">
       <svg
         className="h-6 w-6"
         xmlns="http://www.w3.org/2000/svg"
