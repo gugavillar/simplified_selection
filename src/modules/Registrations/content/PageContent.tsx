@@ -61,7 +61,7 @@ type ResolverType = Resolver<
 >
 
 export const PageContent = ({ states }: ContentPageProps) => {
-  const [userStep, setUserStep] = useState(3)
+  const [userStep, setUserStep] = useState(1)
 
   const onSubmitHandler = (values: any) => {
     console.log(values)
@@ -91,7 +91,7 @@ export const PageContent = ({ states }: ContentPageProps) => {
     [states],
   )
 
-  const resolver = () => {
+  const resolver = useMemo(() => {
     if (userStep === 1) {
       return {
         resolver: roleSubscriptionResolver,
@@ -108,13 +108,13 @@ export const PageContent = ({ states }: ContentPageProps) => {
       resolver: uploadSubscriptionResolver,
       defaultValues: uploadSubscriptionDocuments,
     }
-  }
+  }, [userStep])
 
   return (
     <FormContainer
       handleSubmit={onSubmitHandler}
-      defaultValues={resolver()?.defaultValues}
-      resolver={resolver()?.resolver as ResolverType}
+      defaultValues={resolver?.defaultValues}
+      resolver={resolver?.resolver as ResolverType}
       stepForm={{
         isClearButton: false,
         isFirstStep: userStep === 1,

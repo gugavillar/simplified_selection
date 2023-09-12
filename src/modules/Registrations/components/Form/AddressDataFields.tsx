@@ -65,7 +65,7 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
         )
       }
 
-      handleGetCities(response.uf)
+      await handleGetCities(response.uf)
 
       setTimeout(
         () =>
@@ -80,7 +80,7 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
             }),
             { keepDefaultValues: true },
           ),
-        800,
+        300,
       )
     } catch (error) {
       console.log(error)

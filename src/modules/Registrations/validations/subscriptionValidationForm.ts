@@ -53,6 +53,14 @@ export const roleSubscriptionResolver = yupResolver(
 
 export const uploadSubscriptionResolver = yupResolver(
   yup.object().shape({
-    upload: yup.array().min(1, 'Necessário ter no mínimo 1 arquivo'),
+    taxpayerRegistration: taxpayerRegistrationSchema(),
+    dateOfBirth: dateSchema(),
+    phone: phoneSchema(),
+    zipCode: zipCodeSchema(),
+    upload: yup.array().required().min(1, 'Necessário ter no mínimo 1 arquivo'),
+    documents: yup
+      .array()
+      .required()
+      .min(1, 'Necessário ter no mínimo 1 arquivo'),
   }),
 )

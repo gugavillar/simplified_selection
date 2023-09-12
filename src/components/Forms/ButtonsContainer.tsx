@@ -1,3 +1,4 @@
+'use client'
 import { FieldValues, UseFormTrigger } from 'react-hook-form'
 
 import { Button } from './Button'
@@ -24,11 +25,11 @@ export const ButtonsContainer = <T extends FieldValues>({
           </Button>
         ) : null}
         {!stepsForm?.isFirstStep ? (
-          <Button onClick={stepsForm.handlePreviousStep} type="button">
+          <Button type="button" onClick={stepsForm.handlePreviousStep}>
             Voltar
           </Button>
         ) : null}
-        <Button key="advancedStep" type="submit">
+        <Button key="submitStep" type="submit">
           {!stepsForm.isLastStep ? 'Avançar' : 'Cadastrar'}
         </Button>
       </div>

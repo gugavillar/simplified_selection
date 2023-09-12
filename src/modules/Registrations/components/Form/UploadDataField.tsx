@@ -1,5 +1,4 @@
-import { Fragment } from 'react'
-
+'use client'
 import { Controller, useFormContext } from 'react-hook-form'
 
 import { DropzoneInputField } from '@/components'
@@ -32,7 +31,7 @@ export const UploadDataField = () => {
   }
 
   return (
-    <Fragment>
+    <div className="space-y-4">
       <Controller
         name="upload"
         control={control}
@@ -78,6 +77,6 @@ export const UploadDataField = () => {
           />
         )}
       />
-    </Fragment>
+    </div>
   )
 }

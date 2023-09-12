@@ -1,3 +1,4 @@
+'use client'
 import { useCallback } from 'react'
 
 import {
@@ -8,6 +9,14 @@ import {
 } from 'react-dropzone'
 
 import { Check, Upload } from '@/Icons'
+
+const FILE_TYPE: {
+  [key: string]: string
+} = {
+  'image/jpg': 'JPG',
+  'image/png': 'PNG',
+  'application/pdf': 'PDF',
+}
 
 type DropzoneInputFieldProps<T> = DropzoneInputProps & {
   label: string
@@ -46,10 +55,17 @@ export const DropzoneInputField = <T,>({
     },
     [handleClearValue, handleSetError, handleSetValue, fieldName],
   )
+
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     onDrop,
     ...options,
   })
+
+  const fileTypePermitted = !options?.accept
+    ? 'nenhum'
+    : Object.keys(options?.accept)
+        ?.map((key) => FILE_TYPE[key])
+        .join(', ')
 
   return (
     <div>
@@ -72,7 +88,7 @@ export const DropzoneInputField = <T,>({
               </span>
             </p>
             <p className="text-xs text-gray-500 group-hover:text-white">
-              PDF, PNG, JPG
+              {fileTypePermitted}
             </p>
           </div>
           <input
