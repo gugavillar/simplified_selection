@@ -6,14 +6,14 @@ import { validateCep } from 'validations-br'
 import { Input, MaskedInput, Select } from '@/components'
 import { SubscriptionFormType } from '@/modules/Registrations/content'
 import { getAddressFromZipCode, getCitiesFromUf } from '@/services'
-import { SelectionOptionsType } from '@/types/common'
+import { DefaultSelectionOptionsType } from '@/types/common'
 
 type AddressDataFieldsProps = {
-  states: SelectionOptionsType | { message: string }
+  states: Array<DefaultSelectionOptionsType> | { message: string }
 }
 
 export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
-  const [cities, setCities] = useState<SelectionOptionsType>([])
+  const [cities, setCities] = useState<Array<DefaultSelectionOptionsType>>([])
   const [isLoadingCities, setIsLoadingCities] = useState(false)
   const [isGettingAddress, setIsGettingAddress] = useState(false)
 

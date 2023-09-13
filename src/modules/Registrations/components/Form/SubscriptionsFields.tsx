@@ -1,9 +1,9 @@
-import { SelectionOptionsType } from '@/types/common'
+import { DefaultSelectionOptionsType } from '@/types/common'
 
 import { AddressDataFields, PersonDataFields } from '.'
 
 type SubscriptionsFieldsProps = {
-  states: SelectionOptionsType | { message: string }
+  states: Array<DefaultSelectionOptionsType> | { message: string }
 }
 
 export const SubscriptionsFields = ({ states }: SubscriptionsFieldsProps) => {
