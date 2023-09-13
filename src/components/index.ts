@@ -1,6 +1,5 @@
 export * from './Forms'
-export * from './Header'
+export * from './Layouts'
 export * from './LoaderContent'
 export * from './WrapperPage'
-export * from './Sidemenu'
 export * from './Steps'

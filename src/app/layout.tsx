@@ -14,10 +14,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="flex flex-col h-screen">
-        <Header>
+        <div className="flex w-screen h-screen">
           <SideMenu />
-          <div className="flex-grow pb-4 pr-4">{children}</div>
-        </Header>
+          <Header>
+            <div className="flex-grow px-4">{children}</div>
+          </Header>
+        </div>
       </body>
     </html>
   )

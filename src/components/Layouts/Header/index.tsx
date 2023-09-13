@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { Fragment, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 export const Header = ({ children }: PropsWithChildren) => {
   return (
-    <Fragment>
-      <header className="h-32 flex align-middle justify-center mt-4">
+    <div className="w-full flex flex-col">
+      <header className="h-32 flex align-middle justify-center my-4">
         <div className="p-4">
           <Image
             src="/assets/brasao.png"
@@ -15,7 +15,7 @@ export const Header = ({ children }: PropsWithChildren) => {
           />
         </div>
       </header>
-      <main className="flex flex-grow gap-4">{children}</main>
-    </Fragment>
+      <main className="flex flex-grow overflow-y-auto mb-6">{children}</main>
+    </div>
   )
 }
