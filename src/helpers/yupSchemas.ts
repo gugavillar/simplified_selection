@@ -1,4 +1,9 @@
-import { validateCPF, validateCep, validatePhone } from 'validations-br'
+import {
+  validateCPF,
+  validateCep,
+  validateEmail,
+  validatePhone,
+} from 'validations-br'
 import * as yup from 'yup'
 
 import { formatterDate, isValidDate } from '.'
@@ -38,3 +43,12 @@ export const zipCodeSchema = () =>
       validateCep(value),
     )
     .transform((zipCode) => zipCode.replace(/-/g, ''))
+
+export const emailSchema = () =>
+  yup
+    .string()
+    .email()
+    .required()
+    .test('isValidEmail', 'Digite um email válido', (value) =>
+      validateEmail(value),
+    )

@@ -1,4 +1,4 @@
-import { FieldValues, UseFormTrigger } from 'react-hook-form'
+import { FieldValues, UseFormTrigger, useFormContext } from 'react-hook-form'
 
 import { Button } from './Button'
 import { StepsForm } from './FormContainer'
@@ -15,12 +15,17 @@ export const ButtonsContainer = <T extends FieldValues>({
   handleClearForm,
   stepsForm,
 }: ButtonsContainerProps<T>) => {
+  const {
+    formState: { isSubmitting },
+  } = useFormContext()
+
   if (stepsForm) {
     const handleNextStep = () => {
       stepsForm.trigger()
       if (stepsForm.errors) return
       stepsForm.handleNextStep()
     }
+
     return (
       <div className="flex gap-6 mt-4 justify-end">
         {stepsForm?.isClearButton ? (
@@ -38,7 +43,7 @@ export const ButtonsContainer = <T extends FieldValues>({
             Avançar
           </Button>
         ) : (
-          <Button key="submitStep" type="submit">
+          <Button key="submitStep" type="submit" isLoading={isSubmitting}>
             Cadastrar
           </Button>
         )}
@@ -51,7 +56,9 @@ export const ButtonsContainer = <T extends FieldValues>({
       <Button onClick={handleClearForm} variant="border" type="button">
         Limpar
       </Button>
-      <Button type="submit">Cadastrar</Button>
+      <Button type="submit" isLoading={isSubmitting}>
+        Cadastrar
+      </Button>
     </div>
   )
 }

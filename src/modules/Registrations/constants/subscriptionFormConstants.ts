@@ -1,7 +1,7 @@
 export const GENDER = [
   { label: 'Masculino', value: 'Masculino' },
   { label: 'Feminino', value: 'Feminino' },
-]
+] as const
 
 export const MARITAL_STATUS = [
   { label: 'Solteiro(a)', value: 'Solteiro(a)' },
@@ -9,7 +9,7 @@ export const MARITAL_STATUS = [
   { label: 'Separado(a)', value: 'Separado(a)' },
   { label: 'Divorciado(a)', value: 'Divorciado(a)' },
   { label: 'Viúvo(a)', value: 'Viúvo(a)' },
-]
+] as const
 
 export const COLOR_RACE = [
   { label: 'Branco', value: 'Branco' },
@@ -17,12 +17,12 @@ export const COLOR_RACE = [
   { label: 'Pardo', value: 'Pardo' },
   { label: 'Indígena', value: 'Indígena' },
   { label: 'Amarelo', value: 'Amarelo' },
-]
+] as const
 
 export const YES_OR_NO = [
   { label: 'Sim', value: 'Sim' },
   { label: 'Não', value: 'Não' },
-]
+] as const
 
 export const ROLE_OPTIONS = [
   {

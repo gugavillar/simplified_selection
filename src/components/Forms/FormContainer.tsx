@@ -45,8 +45,8 @@ export const FormContainer = <T extends FieldValues>({
   const handleClearForm = () =>
     methods.reset({ ...defaultValues }, { keepDefaultValues: true })
 
-  const onSubmitHandler = (values: T) => {
-    handleSubmit(values)
+  const onSubmitHandler = async (values: T) => {
+    await handleSubmit(values)
     handleClearForm()
   }
 

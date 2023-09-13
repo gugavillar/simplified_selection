@@ -4,9 +4,9 @@
 
 @layer components {
   .btn-base {
-    @apply inline-block rounded bg-matisse-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-matisse-500
+    @apply inline-block rounded bg-matisse-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-matisse-500 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:scale-100 disabled:hover:shadow-none
   }
   .btn-border {
-    @apply inline-block rounded border border-current px-8 py-3 text-sm font-medium text-matisse-600 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:text-matisse-500
+    @apply inline-block rounded border border-current px-8 py-3 text-sm font-medium text-matisse-600 transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:text-matisse-500 disabled:cursor-not-allowed disabled:border-gray-400 disabled:text-gray-400 disabled:hover:scale-100 disabled:hover:shadow-none
   }
 }

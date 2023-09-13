@@ -3,6 +3,7 @@ import * as yup from 'yup'
 
 import {
   dateSchema,
+  emailSchema,
   phoneSchema,
   taxpayerRegistrationSchema,
   transformDate,
@@ -40,7 +41,7 @@ export const subscriptionFormResolver = yupResolver(
       ),
     dateOfBirth: dateSchema(),
     phone: phoneSchema(),
-    email: yup.string().email().required(),
+    email: emailSchema(),
     mother: yup.string().required(),
     rg: yup.string().trim().required(),
     expeditionDate: dateSchema(),

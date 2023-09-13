@@ -99,6 +99,7 @@ export const PersonDataFields = () => {
           className="w-full"
           placeholder="Email"
           labelField="Email"
+          type="email"
           id="email"
           error={errors.email?.message}
           {...register('email')}
