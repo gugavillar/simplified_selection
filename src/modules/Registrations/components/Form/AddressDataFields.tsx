@@ -21,6 +21,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
     register,
     control,
     reset,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useFormContext<SubscriptionFormType>()
 
@@ -34,8 +36,12 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
         value: city.nome,
       }))
       setCities(formattedResponse)
-    } catch (error) {
-      console.log(error)
+      clearErrors('city')
+    } catch {
+      setError('city', {
+        message:
+          'Não foi possível carregar as cidades, selecione o estado novamente',
+      })
     } finally {
       setIsLoadingCities(false)
     }
@@ -51,6 +57,9 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
       const response = await getAddressFromZipCode(valueToAPI)
 
       if (response.erro) {
+        setError('address', {
+          message: 'CEP não localizado, informe os dados manualmente.',
+        })
         return reset(
           (values) => ({
             ...values,
@@ -60,7 +69,7 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
             state: '',
             city: '',
           }),
-          { keepDefaultValues: true },
+          { keepDefaultValues: true, keepErrors: true },
         )
       }
 
@@ -81,8 +90,11 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           ),
         300,
       )
-    } catch (error) {
-      console.log(error)
+    } catch {
+      setError('address', {
+        message:
+          'Não foi possível pegar as informações do endereço, preencha o CEP novamente.',
+      })
     } finally {
       setIsGettingAddress(false)
     }
@@ -138,8 +150,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
         />
         <Input
           className="w-full"
-          placeholder="Bairro"
-          labelField={isGettingAddress ? 'Carregando...' : 'Bairro'}
+          labelField="Bairro"
+          placeholder={isGettingAddress ? 'Carregando...' : 'Bairro'}
           id="neighborhood"
           disabled={isGettingAddress}
           error={errors.neighborhood?.message}
@@ -164,7 +176,11 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
         <Select
           className="w-full max-md:w-full"
           defaultValue=""
-          placeholder={isLoadingCities ? 'Carregando...' : 'Selecione a cidade'}
+          placeholder={
+            isLoadingCities || isGettingAddress
+              ? 'Carregando...'
+              : 'Selecione a cidade'
+          }
           labelField="Cidade"
           id="city"
           disabled={isLoadingCities || isGettingAddress}

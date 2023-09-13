@@ -31,11 +31,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <option value="" disabled>
             {props.placeholder}
           </option>
-          {optionsToSelection?.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
+
+          {Array.isArray(optionsToSelection)
+            ? optionsToSelection?.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))
+            : null}
         </select>
         {error ? <p className="text-xs text-red-500">{error}</p> : null}
       </div>
