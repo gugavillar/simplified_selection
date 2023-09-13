@@ -84,7 +84,6 @@ export const uploadSubscriptionResolver = yupResolver(
     expeditionDate: transformDate(),
     rg: yup.string().trim().required(),
     nis: yup.string().trim(),
-    upload: yup.array().required().min(1, 'Necessário ter no mínimo 1 arquivo'),
     documents: yup
       .array()
       .required()

@@ -1,4 +1,3 @@
-'use client'
 import { useFormContext, Controller } from 'react-hook-form'
 
 import { Input, Select, MaskedInput } from '@/components'

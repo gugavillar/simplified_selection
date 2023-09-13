@@ -1,4 +1,3 @@
-'use client'
 import { SelectionOptionsType } from '@/types/common'
 
 import { AddressDataFields, PersonDataFields } from '.'

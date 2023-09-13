@@ -1,4 +1,3 @@
-'use client'
 import { FieldValues, UseFormTrigger } from 'react-hook-form'
 
 import { Button } from './Button'

@@ -81,7 +81,7 @@ export const DropzoneInputField = ({
         ),
       )
 
-      setValue(name, files, {
+      setValue(name, [...selectedFiles, ...files], {
         shouldValidate: true,
       })
       return clearErrors(name)
