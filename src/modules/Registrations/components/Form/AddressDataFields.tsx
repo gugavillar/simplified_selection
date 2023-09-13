@@ -129,7 +129,7 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           {...register('address')}
         />
         <Input
-          className="w-28"
+          className="w-28 max-md:w-full"
           placeholder="N˚"
           labelField="N˚"
           id="addressNumber"

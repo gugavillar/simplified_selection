@@ -174,7 +174,7 @@ export const PersonDataFields = () => {
               className="w-full max-md:w-full"
               format="###########"
               error={errors.nis?.message}
-              labelField="NIS"
+              labelField="NIS (opcional)"
               id="nis"
               {...field}
             />

@@ -10,7 +10,7 @@ export const SubscriptionsFields = ({ states }: SubscriptionsFieldsProps) => {
   return (
     <div>
       <h3 className="text-gray-400 text-center mb-6">
-        Informe os dados pessoais e de endereço
+        Informe os dados solicitados abaixo
       </h3>
       <PersonDataFields />
       <AddressDataFields states={states} />

@@ -80,7 +80,7 @@ export const PageContent = ({ states }: ContentPageProps) => {
   const steps = useMemo(
     () => [
       {
-        labelStep: 'Cargo',
+        labelStep: 'Cargo desejado',
         children: (
           <RoleSelection radioOptions={ROLE_OPTIONS} registerName="role" />
         ),
@@ -90,7 +90,7 @@ export const PageContent = ({ states }: ContentPageProps) => {
         children: <SubscriptionsFields states={states} />,
       },
       {
-        labelStep: 'Documentos',
+        labelStep: 'Documentos comprobatórios',
         children: <UploadDataField />,
       },
     ],
