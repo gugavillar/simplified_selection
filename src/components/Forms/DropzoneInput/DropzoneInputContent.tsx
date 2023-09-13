@@ -22,8 +22,11 @@ export const DropzoneInputContent = ({
     <div className="flex flex-col items-center justify-center pt-5 pb-6">
       <Upload />
       <p className="mb-2 text-sm text-matisse-600 group-hover:text-white">
-        <span className="font-semibold">
+        <span className="font-semibold max-lg:hidden">
           Clique para fazer o upload ou arraste e solte
+        </span>
+        <span className="font-semibold lg:hidden">
+          Clique para fazer o upload
         </span>
       </p>
       <p className="text-xs text-matisse-600 group-hover:text-white">

@@ -10,6 +10,7 @@ import {
 import { useFormContext } from 'react-hook-form'
 
 import { DropzoneInputContent } from './DropzoneInputContent'
+import { DropzoneListFiles } from './DropzoneListFiles'
 
 const FILE_TYPE: {
   [key: string]: string
@@ -26,6 +27,8 @@ const ERROR_CODE: {
     'Tamanho de arquivo excedido. O arquivo deve ter 2MB ou menos.',
   'file-invalid-type': 'Tipo de arquivo não suportado. Tente novamente.',
 }
+
+const MAX_FILES = 5
 
 type DropzoneInputFieldProps = DropzoneInputProps & {
   name: string
@@ -48,6 +51,8 @@ export const DropzoneInputField = ({
     formState: { errors },
   } = useFormContext()
 
+  const selectedFiles: Array<File> = watch(name)
+
   const onDrop = useCallback(
     (acceptedFiles: Array<File>, rejectedFiles: Array<FileRejection>) => {
       if (rejectedFiles?.length) {
@@ -60,14 +65,33 @@ export const DropzoneInputField = ({
             ),
         )
       }
-      setValue(name, acceptedFiles, { shouldValidate: true })
-      clearErrors(name)
+
+      if (!selectedFiles?.length) {
+        setValue(name, acceptedFiles, {
+          shouldValidate: true,
+        })
+        return clearErrors(name)
+      }
+
+      const files = acceptedFiles.filter((file) =>
+        selectedFiles.map(
+          (selected) =>
+            selected.name !== file.name ||
+            selected.lastModified !== file.lastModified,
+        ),
+      )
+
+      setValue(name, files, {
+        shouldValidate: true,
+      })
+      return clearErrors(name)
     },
-    [clearErrors, name, setError, setValue],
+    [clearErrors, name, selectedFiles, setError, setValue],
   )
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
+    maxFiles: MAX_FILES,
     maxSize: 2048 * 1000,
     ...options,
   })
@@ -78,23 +102,32 @@ export const DropzoneInputField = ({
         ?.map((key) => FILE_TYPE[key])
         .join(', ')
 
-  const hasFiles = watch(name)
+  const handleRemoveFile = (file: File) => {
+    const files = selectedFiles.filter(
+      (selectedFile: File) =>
+        file.lastModified !== selectedFile.lastModified ||
+        file.name !== selectedFile.name,
+    )
+    setValue(name, files, { shouldValidate: true })
+  }
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-500">{label}</label>
+      <label className="block text-sm font-medium text-gray-500 mb-2">
+        {label}
+      </label>
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor={id}
           className={`group flex flex-col items-center justify-center w-full h-40 border-2 border-matisse-600 border-dashed rounded-lg cursor-pointer ${
-            !hasFiles?.length ? 'hover:bg-matisse-600' : ''
+            selectedFiles?.length !== MAX_FILES ? 'hover:bg-matisse-600' : ''
           } `}
           {...getRootProps()}
         >
           <DropzoneInputContent
             fileSize="2MB"
             fileTypePermitted={fileTypePermitted}
-            hasFiles={hasFiles?.length}
+            hasFiles={selectedFiles?.length === MAX_FILES}
           />
           <input id={id} type="file" className="hidden" {...getInputProps()} />
         </label>
@@ -104,6 +137,12 @@ export const DropzoneInputField = ({
           {errors?.[name]?.message as string}
         </p>
       )}
+      {selectedFiles?.length ? (
+        <DropzoneListFiles
+          selectedFiles={selectedFiles}
+          handleRemoveFile={handleRemoveFile}
+        />
+      ) : null}
     </div>
   )
 }
