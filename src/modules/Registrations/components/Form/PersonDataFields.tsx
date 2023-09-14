@@ -115,14 +115,14 @@ export const PersonDataFields = () => {
           {...register('mother')}
         />
         <Controller
-          name="rg"
+          name="identificationDocument"
           control={control}
           render={({ field }) => (
             <MaskedInput
               placeholder="000000000"
               className="w-40 max-md:w-full"
               format="#########"
-              error={errors.rg?.message}
+              error={errors.identificationDocument?.message}
               labelField="Número do RG"
               id="rg"
               {...field}
@@ -130,14 +130,14 @@ export const PersonDataFields = () => {
           )}
         />
         <Controller
-          name="expeditionDate"
+          name="dateOfExpedition"
           control={control}
           render={({ field }) => (
             <MaskedInput
               placeholder="00/00/0000"
               className="w-40 max-md:w-full"
               format="##/##/####"
-              error={errors.expeditionDate?.message}
+              error={errors.dateOfExpedition?.message}
               labelField="Data de expedição"
               id="expeditionDate"
               {...field}
@@ -167,14 +167,14 @@ export const PersonDataFields = () => {
           {...register('pcd')}
         />
         <Controller
-          name="nis"
+          name="socialNumber"
           control={control}
           render={({ field }) => (
             <MaskedInput
               placeholder="00000000000"
               className="w-full max-md:w-full"
               format="###########"
-              error={errors.nis?.message}
+              error={errors.socialNumber?.message}
               labelField="NIS (opcional)"
               id="nis"
               {...field}

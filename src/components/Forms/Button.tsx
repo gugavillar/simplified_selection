@@ -14,15 +14,19 @@ const Loader = () => (
   </div>
 )
 
-export const Button = ({ variant = 'base', ...props }: ButtonBaseProps) => {
+export const Button = ({
+  variant = 'base',
+  isLoading,
+  ...props
+}: ButtonBaseProps) => {
   const styleButton = variant === 'base' ? 'btn-base' : 'btn-border'
   return (
     <button
       {...props}
-      disabled={props.isLoading || props.disabled}
+      disabled={isLoading || props.disabled}
       className={`${styleButton} ${props.className}`}
     >
-      {props.isLoading ? <Loader /> : null} {props.children}
+      {isLoading ? <Loader /> : null} {props.children}
     </button>
   )
 }

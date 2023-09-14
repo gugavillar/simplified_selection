@@ -1,7 +1,7 @@
-export declare type SelectionOptionsType = Array<{
+export declare type DefaultSelectionOptionsType = {
   label: string
   value: string | number
-}>
+}
 
 export declare type IconPropsType = Partial<{
   width: string

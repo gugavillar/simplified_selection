@@ -13,7 +13,7 @@ import {
 import { ButtonsContainer } from './ButtonsContainer'
 
 export type StepsForm = {
-  isClearButton: boolean
+  isClearButton?: boolean
   isFirstStep: boolean
   isLastStep: boolean
   handleNextStep: () => void

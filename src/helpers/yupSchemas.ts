@@ -6,18 +6,49 @@ import {
 } from 'validations-br'
 import * as yup from 'yup'
 
-import { formatterDate, isValidDate } from '.'
+import {
+  formatterDateToISODate,
+  isFutureDateFromToday,
+  isValidBirthDate,
+  isValidExpeditionDocumentDate,
+} from '.'
 
-export const dateSchema = () =>
+export const birthDateSchema = () =>
   yup
     .string()
     .required()
-    .test('isValidDate', 'Digite uma data válida', (value) =>
-      isValidDate(value),
-    )
+    .test('isValidDate', 'Digite uma data válida', (value, ctx) => {
+      if (isFutureDateFromToday(value)) {
+        return ctx.createError({
+          message: 'Data de nascimento não pode ser uma data futura',
+        })
+      }
 
-export const transformDate = () =>
-  yup.string().transform((value) => formatterDate(value))
+      return isValidBirthDate(value)
+    })
+
+export const documentExpeditionDateSchema = () =>
+  yup
+    .string()
+    .required()
+    .test('isValidDate', 'Digite uma data válida', (value, ctx) => {
+      if (ctx.parent.dateOfBirth === value) {
+        return ctx.createError({
+          message: 'Data de expedição não pode ser igual a data de nascimento',
+        })
+      }
+
+      if (isFutureDateFromToday(value)) {
+        return ctx.createError({
+          message: 'Data de expedição não pode ser uma data futura',
+        })
+      }
+
+      return isValidExpeditionDocumentDate(value)
+    })
+
+export const transformDateIntoISODate = () =>
+  yup.string().transform((value) => formatterDateToISODate(value))
 
 export const phoneSchema = () =>
   yup

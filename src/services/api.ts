@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Client, query } from 'faunadb'
+import { Client } from 'fauna'
 
 export const zipCodeAPI = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_ZIP_CODE,
@@ -19,8 +19,15 @@ ibgeUfAPI.interceptors.response.use(
   (error) => error?.message,
 )
 
-export const faunaAPI = new Client({
-  secret: process.env.NEXT_PUBLIC_FAUNA_KEY as string,
+export const cloudinaryAPI = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_CLOUDINARY_URL,
 })
 
-export const queryFauna = query
+cloudinaryAPI.interceptors.response.use(
+  (response) => response,
+  (error) => error?.message,
+)
+
+export const faunaClient = new Client({
+  secret: process.env.NEXT_PUBLIC_FAUNA_KEY,
+})

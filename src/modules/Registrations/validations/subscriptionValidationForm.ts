@@ -2,11 +2,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 import {
-  dateSchema,
+  birthDateSchema,
+  documentExpeditionDateSchema,
   emailSchema,
   phoneSchema,
   taxpayerRegistrationSchema,
-  transformDate,
+  transformDateIntoISODate,
   zipCodeSchema,
 } from '@/helpers'
 import {
@@ -39,12 +40,12 @@ export const subscriptionFormResolver = yupResolver(
         [...COLOR_RACE.map((gender) => gender.value)],
         'Selecione uma das opções',
       ),
-    dateOfBirth: dateSchema(),
+    dateOfBirth: birthDateSchema(),
     phone: phoneSchema(),
     email: emailSchema(),
     mother: yup.string().required(),
-    rg: yup.string().trim().required(),
-    expeditionDate: dateSchema(),
+    identificationDocument: yup.string().trim().required(),
+    dateOfExpedition: documentExpeditionDateSchema(),
     maritalStatus: yup
       .string()
       .required()
@@ -59,7 +60,10 @@ export const subscriptionFormResolver = yupResolver(
         [...YES_OR_NO.map((status) => status.value)],
         'Selecione uma das opções',
       ),
-    nis: yup.string().trim(),
+    socialNumber: yup
+      .string()
+      .min(11, 'Número do NIS é composto por 11 dígitos')
+      .trim(),
     zipCode: zipCodeSchema(),
     address: yup.string().required(),
     addressNumber: yup.string().required(),
@@ -79,12 +83,12 @@ export const roleSubscriptionResolver = yupResolver(
 export const uploadSubscriptionResolver = yupResolver(
   yup.object().shape({
     taxpayerRegistration: taxpayerRegistrationSchema(),
-    dateOfBirth: transformDate(),
+    dateOfBirth: transformDateIntoISODate(),
     phone: phoneSchema(),
     zipCode: zipCodeSchema(),
-    expeditionDate: transformDate(),
-    rg: yup.string().trim().required(),
-    nis: yup.string().trim(),
+    dateOfExpedition: transformDateIntoISODate(),
+    identificationDocument: yup.string().trim().required(),
+    socialNumber: yup.string().trim(),
     documents: yup
       .array()
       .required()
