@@ -25,6 +25,11 @@ export const formatterDateToISODate = (date: string) => {
   return format(new Date(numberedDate), 'yyyy-MM-dd')
 }
 
+export const formatterDateToBrazilianDate = (date: string) => {
+  const dateParsed = parse(date, 'yyyy-MM-dd', new Date(), { locale: ptBR })
+  return format(dateParsed, 'dd/MM/yyyy')
+}
+
 export const isValidBirthDate = (date: string | undefined) => {
   if (!date) return false
 

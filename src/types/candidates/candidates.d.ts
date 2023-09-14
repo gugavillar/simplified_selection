@@ -34,6 +34,8 @@ export declare type CandidateFormDataType = {
 export declare type CandidateDatabaseType = {
   id: string
   role: string
+  coll: string
+  ts: TDateISO
   taxpayerRegistration: string
   name: string
   gender: (typeof GENDER)[number]['value']
@@ -56,3 +58,8 @@ export declare type CandidateDatabaseType = {
   city: string
   uploads: Array<UploadCloudinaryResponse>
 }
+
+export declare type CandidatesKeys = keyof Omit<
+  CandidateDatabaseType,
+  'id' | 'coll' | 'ts' | 'uploads'
+>
