@@ -4,8 +4,9 @@ import { useFormContext, Controller } from 'react-hook-form'
 import { validateCep } from 'validations-br'
 
 import { Input, MaskedInput, Select } from '@/components'
-import { SubscriptionFormType } from '@/modules/Registrations/content'
 import { getAddressFromZipCode, getCitiesFromUf } from '@/services'
+
+import { SubscriptionFormType } from '@/modules/Registrations/content'
 import { DefaultSelectionOptionsType } from '@/types/common'
 
 type AddressDataFieldsProps = {

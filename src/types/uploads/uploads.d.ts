@@ -1,5 +1,3 @@
-import { Url } from 'url'
-
 export declare type UploadCloudinaryResponse = {
   asset_id: string
   public_id: string
@@ -16,8 +14,8 @@ export declare type UploadCloudinaryResponse = {
   type: string
   etag: string
   placeholder: boolean
-  url: Url
-  secure_url: Url
+  url: string
+  secure_url: string
   folder: string
   access_mode: string
   existing: boolean

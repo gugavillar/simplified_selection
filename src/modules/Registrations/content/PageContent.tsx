@@ -5,6 +5,8 @@ import { Resolver } from 'react-hook-form'
 
 import { Steps } from '@/components'
 import { FormContainer } from '@/components/Forms/FormContainer'
+import { uploadFiles, insertCandidates, updateCandidate } from '@/services'
+
 import {
   SubscriptionsFields,
   RoleSelection,
@@ -16,8 +18,6 @@ import {
   subscriptionFormResolver,
   uploadSubscriptionResolver,
 } from '@/modules/Registrations/validations'
-import { uploadFiles } from '@/services'
-import { insertCandidates, updateCandidate } from '@/services/candidates'
 import { DefaultSelectionOptionsType } from '@/types/common'
 
 const formSubscription = {

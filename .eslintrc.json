@@ -20,7 +20,7 @@
             "position": "before"
           },
           {
-            "pattern": "{@/**}",
+            "pattern": "{@/components/**,@/components,@/services,@/Icons}",
             "group": "internal",
             "position": "before"
           }

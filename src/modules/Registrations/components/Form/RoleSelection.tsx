@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form'
 
 import { RadioButton } from '@/components'
 
-import { RoleSubscriptionType } from '../../content'
+import { RoleSubscriptionType } from '@/modules/Registrations/content'
 
 type RoleSelectionProps = {
   registerName: 'role'

@@ -5,6 +5,8 @@ import {
   YES_OR_NO,
 } from '@/modules/Registrations/constants'
 
+import { UploadCloudinaryResponse } from '../uploads'
+
 export declare type CandidateFormDataType = {
   role: string
   taxpayerRegistration: string
@@ -52,4 +54,5 @@ export declare type CandidateDatabaseType = {
   neighborhood: string
   state: string
   city: string
+  uploads: Array<UploadCloudinaryResponse>
 }

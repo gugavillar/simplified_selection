@@ -4,12 +4,10 @@ export const sortSelectOptions = (
 ) => {
   const nameA = valueA.label.toUpperCase()
   const nameB = valueB.label.toUpperCase()
-  if (nameA < nameB) {
-    return -1
-  }
-  if (nameA > nameB) {
-    return 1
-  }
+
+  if (nameA < nameB) return -1
+
+  if (nameA > nameB) return 1
 
   return 0
 }

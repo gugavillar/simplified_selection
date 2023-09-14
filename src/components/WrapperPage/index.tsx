@@ -1,6 +1,6 @@
 import { PropsWithChildren, Suspense } from 'react'
 
-import { LoaderContent } from '../LoaderContent'
+import { LoaderContent } from '@/components/LoaderContent'
 
 type WrapperPageProps = PropsWithChildren & {
   title: string

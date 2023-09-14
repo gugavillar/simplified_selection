@@ -12,7 +12,7 @@ export const MENU_LINKS = [
   },
   {
     label: 'Inscrição',
-    link: '/inscricao',
+    link: '/candidatos/inscricao',
     children: <UserPlus />,
   },
 ] as const

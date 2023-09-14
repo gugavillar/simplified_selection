@@ -1,7 +1,8 @@
 import { WrapperPage } from '@/components'
+import { getBrazilUf } from '@/services'
+
 import { sortSelectOptions } from '@/helpers'
 import { PageContent } from '@/modules/Registrations/content'
-import { getBrazilUf } from '@/services'
 
 const getStates = async () => {
   try {
