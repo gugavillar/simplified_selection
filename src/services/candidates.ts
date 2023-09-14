@@ -15,3 +15,10 @@ export const insertCandidates = (
   `
   return faunaClient.query(queryCreateCandidate)
 }
+
+export const updateCandidate = (candidateId: string, data: any) => {
+  const queryUpdateCandidate = fql`
+  candidates.byId(${candidateId})?.update(${data})
+  `
+  return faunaClient.query(queryUpdateCandidate)
+}

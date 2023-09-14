@@ -16,7 +16,9 @@ import {
   subscriptionFormResolver,
   uploadSubscriptionResolver,
 } from '@/modules/Registrations/validations'
-import { SelectionOptionsType } from '@/types/common'
+import { uploadFiles } from '@/services'
+import { insertCandidates, updateCandidate } from '@/services/candidates'
+import { DefaultSelectionOptionsType } from '@/types/common'
 
 const formSubscription = {
   taxpayerRegistration: '',
@@ -27,10 +29,10 @@ const formSubscription = {
   phone: '',
   email: '',
   mother: '',
-  rg: '',
-  expeditionDate: '',
+  identificationDocument: '',
+  dateOfExpedition: '',
   pcd: '',
-  nis: '',
+  socialNumber: '',
   maritalStatus: '',
   zipCode: '',
   address: '',
@@ -46,15 +48,13 @@ const roleSubscription = {
 }
 
 const uploadSubscriptionDocuments: {
-  upload: Array<File>
   documents: Array<File>
 } = {
-  upload: [],
   documents: [],
 }
 
 type ContentPageProps = {
-  states: SelectionOptionsType | { message: string }
+  states: Array<DefaultSelectionOptionsType> | { message: string }
 }
 
 export declare type SubscriptionFormType = typeof formSubscription
@@ -69,13 +69,30 @@ type ResolverType = Resolver<
 export const PageContent = ({ states }: ContentPageProps) => {
   const [userStep, setUserStep] = useState(1)
 
-  const onSubmitHandler = (values: any) => {
-    console.log(values)
+  const onSubmitHandler = async (
+    values:
+      | RoleSubscriptionType
+      | SubscriptionFormType
+      | UploadSubscriptionDocumentsType,
+  ) => {
+    const { documents, ...rest } = values as RoleSubscriptionType &
+      SubscriptionFormType &
+      UploadSubscriptionDocumentsType
+
+    try {
+      const responseInsert = await insertCandidates(
+        rest as RoleSubscriptionType & SubscriptionFormType,
+      )
+
+      const responseUpload = await uploadFiles(documents)
+
+      await updateCandidate(responseInsert.data.id, {
+        uploads: responseUpload.map((url) => url),
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
-
-  const nextStep = () => setUserStep((step) => step + 1)
-
-  const previousStep = () => setUserStep((step) => step - 1)
 
   const steps = useMemo(
     () => [
@@ -96,6 +113,13 @@ export const PageContent = ({ states }: ContentPageProps) => {
     ],
     [states],
   )
+
+  const isFirstStep = userStep === 1
+  const isLastStep = steps?.length === userStep
+
+  const nextStep = () => setUserStep((step) => step + 1)
+
+  const previousStep = () => setUserStep((step) => step - 1)
 
   const resolver = useMemo(() => {
     if (userStep === 1) {
@@ -123,9 +147,8 @@ export const PageContent = ({ states }: ContentPageProps) => {
       defaultValues={resolver?.defaultValues}
       resolver={resolver?.resolver as ResolverType}
       stepForm={{
-        isClearButton: false,
-        isFirstStep: userStep === 1,
-        isLastStep: steps?.length === userStep,
+        isFirstStep,
+        isLastStep,
         handleNextStep: nextStep,
         handlePreviousStep: previousStep,
       }}
