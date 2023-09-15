@@ -35,3 +35,20 @@ export const getCandidateById = (
   `
   return faunaClient.query(queryGetCandidateById)
 }
+
+export const getAllCandidates = (): Promise<
+  QuerySuccess<{
+    data: Array<
+      Pick<
+        CandidateDatabaseType,
+        'id' | 'name' | 'taxpayerRegistration' | 'role'
+      >
+    >
+    after: string | undefined
+  }>
+> => {
+  const queryGetAllCandidates = fql`
+  candidates.all().order(asc(.name)).map(candidate => ({id: candidate.id, name: candidate.name, taxpayerRegistration: candidate.taxpayerRegistration, role: candidate.role }))
+  `
+  return faunaClient.query(queryGetAllCandidates)
+}

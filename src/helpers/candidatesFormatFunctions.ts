@@ -14,7 +14,7 @@ type KeyOfFormatters =
   | 'dateOfBirth'
   | 'phone'
 
-const candidateObjectFormatFunction = {
+export const candidateObjectFormatFunction = {
   zipCode: (value: string) => formatZipCode(value),
   taxpayerRegistration: (value: string) => formatTaxpayerRegistration(value),
   dateOfExpedition: (value: string) => formatterDateToBrazilianDate(value),

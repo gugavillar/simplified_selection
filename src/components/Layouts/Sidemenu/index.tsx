@@ -1,4 +1,4 @@
-import { UserPlus, Gauge, SignOut } from '@/Icons'
+import { UserPlus, Gauge, SignOut, UserList } from '@/Icons'
 
 import { List } from './List'
 import { ListItem } from './ListItem'
@@ -14,6 +14,11 @@ export const MENU_LINKS = [
     label: 'Inscrição',
     link: '/candidatos/inscricao',
     children: <UserPlus />,
+  },
+  {
+    label: 'Listagem',
+    link: '/candidatos',
+    children: <UserList />,
   },
 ] as const
 
