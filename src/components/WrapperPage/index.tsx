@@ -8,7 +8,7 @@ type WrapperPageProps = PropsWithChildren & {
 
 export const WrapperPage = ({ children, title }: WrapperPageProps) => {
   return (
-    <div className="mx-auto max-w-5xl pb-6">
+    <div className="mx-auto max-w-5xl pb-6 h-full">
       {title ? (
         <div className="mx-auto max-w-lg text-center">
           <h1 className="text-matisse-600 text-xl font-bold sm:text-3xl mb-6">
