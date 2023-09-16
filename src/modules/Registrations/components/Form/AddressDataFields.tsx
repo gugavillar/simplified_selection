@@ -37,9 +37,9 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
         value: city.nome,
       }))
       setCities(formattedResponse)
-      clearErrors('city')
+      clearErrors('address.city')
     } catch {
-      setError('city', {
+      setError('address.city', {
         message:
           'Não foi possível carregar as cidades, selecione o estado novamente',
       })
@@ -58,17 +58,20 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
       const response = await getAddressFromZipCode(valueToAPI)
 
       if (response.erro) {
-        setError('address', {
+        setError('address.location', {
           message: 'CEP não localizado, informe os dados manualmente.',
         })
         return reset(
           (values) => ({
             ...values,
-            address: '',
-            addOnAddress: '',
-            neighborhood: '',
-            state: '',
-            city: '',
+            address: {
+              ...values.address,
+              location: '',
+              addOn: '',
+              neighborhood: '',
+              state: '',
+              city: '',
+            },
           }),
           { keepDefaultValues: true, keepErrors: true },
         )
@@ -81,18 +84,21 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           reset(
             (values) => ({
               ...values,
-              address: response.logradouro,
-              addOnAddress: response.complemento,
-              neighborhood: response.bairro,
-              state: response.uf,
-              city: response.localidade,
+              address: {
+                ...values?.address,
+                location: response.logradouro,
+                addOn: response.complemento,
+                neighborhood: response.bairro,
+                state: response.uf,
+                city: response.localidade,
+              },
             }),
             { keepDefaultValues: true },
           ),
         300,
       )
     } catch {
-      setError('address', {
+      setError('address.location', {
         message:
           'Não foi possível pegar as informações do endereço, preencha o CEP novamente.',
       })
@@ -105,11 +111,11 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
     <div className="space-y-4 mt-4">
       <div className="flex gap-6 w-full max-md:flex-col">
         <Controller
-          name="zipCode"
+          name="address.zipCode"
           control={control}
           render={({ field: { onBlur, ...rest } }) => (
             <MaskedInput
-              error={errors.zipCode?.message}
+              error={errors.address?.zipCode?.message}
               placeholder="00000-000"
               className="w-32 max-md:w-full"
               format="#####-###"
@@ -126,8 +132,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           labelField="Endereço"
           id="address"
           disabled={isGettingAddress}
-          error={errors.address?.message}
-          {...register('address')}
+          error={errors.address?.location?.message}
+          {...register('address.location')}
         />
         <Input
           className="w-28 max-md:w-full"
@@ -135,8 +141,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           labelField="N˚"
           id="addressNumber"
           disabled={isGettingAddress}
-          error={errors.addressNumber?.message}
-          {...register('addressNumber')}
+          error={errors.address?.number?.message}
+          {...register('address.number')}
         />
       </div>
       <div className="flex gap-6 w-full max-md:flex-col">
@@ -146,8 +152,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           labelField="Complemento (opcional)"
           id="addOnAddress"
           disabled={isGettingAddress}
-          error={errors.addOnAddress?.message}
-          {...register('addOnAddress')}
+          error={errors?.address?.addOn?.message}
+          {...register('address.addOn')}
         />
         <Input
           className="w-full"
@@ -155,8 +161,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           placeholder={isGettingAddress ? 'Carregando...' : 'Bairro'}
           id="neighborhood"
           disabled={isGettingAddress}
-          error={errors.neighborhood?.message}
-          {...register('neighborhood')}
+          error={errors?.address?.neighborhood?.message}
+          {...register('address.neighborhood')}
         />
       </div>
       <div className="flex gap-6 w-full max-md:flex-col">
@@ -169,9 +175,9 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           labelField="UF"
           id="state"
           disabled={isGettingAddress}
-          error={errors.state?.message}
+          error={errors?.address?.state?.message}
           optionsToSelection={states as []}
-          {...register('state')}
+          {...register('address.state')}
           onChange={(event) => handleGetCities(event.target.value)}
         />
         <Select
@@ -185,9 +191,9 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           labelField="Cidade"
           id="city"
           disabled={isLoadingCities || isGettingAddress}
-          error={errors.city?.message}
+          error={errors?.address?.city?.message}
           optionsToSelection={cities}
-          {...register('city')}
+          {...register('address.city')}
         />
       </div>
     </div>

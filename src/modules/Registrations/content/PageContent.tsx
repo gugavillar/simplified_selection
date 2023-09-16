@@ -34,13 +34,15 @@ const formSubscription = {
   pcd: '',
   socialNumber: '',
   maritalStatus: '',
-  zipCode: '',
-  address: '',
-  addressNumber: '',
-  addOnAddress: '',
-  neighborhood: '',
-  state: '',
-  city: '',
+  address: {
+    zipCode: '',
+    location: '',
+    number: '',
+    addOn: '',
+    neighborhood: '',
+    state: '',
+    city: '',
+  },
 }
 
 const roleSubscription = {

@@ -22,13 +22,15 @@ export declare type CandidateFormDataType = {
   pcd: string
   socialNumber: string
   maritalStatus: string
-  zipCode: string
-  address: string
-  addressNumber: string
-  addOnAddress: string
-  neighborhood: string
-  state: string
-  city: string
+  address: {
+    zipCode: string
+    location: string
+    number: string
+    addOn: string
+    neighborhood: string
+    state: string
+    city: string
+  }
 }
 
 export declare type CandidateDatabaseType = {
@@ -49,17 +51,24 @@ export declare type CandidateDatabaseType = {
   pcd: (typeof YES_OR_NO)[number]['value']
   socialNumber: string
   maritalStatus: (typeof MARITAL_STATUS)[number]['value']
-  zipCode: string
-  address: string
-  addressNumber: string
-  addOnAddress: string
-  neighborhood: string
-  state: string
-  city: string
+  address: {
+    zipCode: string
+    location: string
+    number: string
+    addOn: string
+    neighborhood: string
+    state: string
+    city: string
+  }
   uploads: Array<UploadCloudinaryResponse>
 }
 
-export declare type CandidatesKeys = keyof Omit<
+export declare type CandidatesKeysWithoutUploadsAndAddressType = keyof Omit<
   CandidateDatabaseType,
-  'id' | 'coll' | 'ts' | 'uploads'
+  'id' | 'coll' | 'ts' | 'uploads' | 'address'
 >
+
+export declare type CandidateKeysAddressType = keyof Pick<
+  CandidateDatabaseType,
+  'address'
+>['address']

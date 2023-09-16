@@ -1,1 +1,1 @@
-export * from './DetailsList'
+export * from './PersonDataDetailsList'

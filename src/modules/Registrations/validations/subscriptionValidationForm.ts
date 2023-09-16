@@ -64,13 +64,15 @@ export const subscriptionFormResolver = yupResolver(
       .string()
       .min(11, 'Número do NIS é composto por 11 dígitos')
       .trim(),
-    zipCode: zipCodeSchema(),
-    address: yup.string().required(),
-    addressNumber: yup.string().required(),
-    addOnAddress: yup.string().default(''),
-    neighborhood: yup.string().required(),
-    state: yup.string().required(),
-    city: yup.string().required(),
+    address: yup.object().shape({
+      zipCode: zipCodeSchema(),
+      location: yup.string().required(),
+      number: yup.string().required(),
+      addOn: yup.string().default(''),
+      neighborhood: yup.string().required(),
+      state: yup.string().required(),
+      city: yup.string().required(),
+    }),
   }),
 )
 
@@ -85,7 +87,9 @@ export const uploadSubscriptionResolver = yupResolver(
     taxpayerRegistration: taxpayerRegistrationSchema(),
     dateOfBirth: transformDateIntoISODate(),
     phone: phoneSchema(),
-    zipCode: zipCodeSchema(),
+    address: yup.object().shape({
+      zipCode: zipCodeSchema(),
+    }),
     dateOfExpedition: transformDateIntoISODate(),
     identificationDocument: yup.string().trim().required(),
     socialNumber: yup.string().trim(),

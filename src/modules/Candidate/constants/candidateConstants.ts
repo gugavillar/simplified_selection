@@ -1,4 +1,4 @@
-export const orderOfListOfCandidateData = [
+export const orderOfListOfCandidatePersonData = [
   'role',
   'name',
   'taxpayerRegistration',
@@ -12,6 +12,9 @@ export const orderOfListOfCandidateData = [
   'mother',
   'maritalStatus',
   'pcd',
+]
+
+export const orderOfListOfCandidateAddressData = [
   'zipCode',
   'address',
   'addressNumber',

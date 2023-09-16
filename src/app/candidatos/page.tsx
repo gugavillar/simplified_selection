@@ -4,7 +4,7 @@ import { WrapperPage } from '@/components'
 import { FileView } from '@/Icons'
 import { getAllCandidates } from '@/services'
 
-import { candidateObjectFormatFunction } from '@/helpers'
+import { formatTaxpayerRegistration } from '@/helpers'
 import { CandidatesData, PageContent } from '@/modules/Candidates/content'
 
 type CandidatesReturn = {
@@ -15,17 +15,19 @@ type CandidatesReturn = {
 const getCandidates = async () => {
   try {
     const response = await getAllCandidates()
-    const formattedData = response.data.data.map((candidate) => ({
-      ...candidate,
-      taxpayerRegistration: candidateObjectFormatFunction.taxpayerRegistration(
-        candidate.taxpayerRegistration,
-      ),
-      action: (
-        <Link href={`/candidatos/${candidate.id}`}>
-          <FileView />
-        </Link>
-      ),
-    }))
+    const formattedData: Array<CandidatesData> = response.data.data.map(
+      (candidate) => ({
+        ...candidate,
+        taxpayerRegistration: formatTaxpayerRegistration(
+          candidate.taxpayerRegistration,
+        ),
+        action: (
+          <Link href={`/candidatos/${candidate.id}`}>
+            <FileView />
+          </Link>
+        ),
+      }),
+    )
     return {
       ...response.data,
       data: formattedData,
