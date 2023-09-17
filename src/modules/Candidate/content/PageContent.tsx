@@ -18,16 +18,24 @@ type PageContentProps = {
 export const PageContent = ({ candidate, address }: PageContentProps) => {
   return (
     <div className="space-y-8">
-      <h3>Dados pessoais</h3>
-      <PersonDataDetailsList
-        candidate={candidate}
-        orderOfListOfCandidateData={orderOfListOfCandidatePersonData}
-      />
-      <h3>Endereço</h3>
-      <AddressDataDetailsList
-        address={address}
-        orderOfListOfCandidateAddressData={orderOfListOfCandidateAddressData}
-      />
+      <div>
+        <h2 className="mb-4 text-xl font-semibold leading-none tracking-tight text-gray-900 ">
+          Informações pessoais
+        </h2>
+        <PersonDataDetailsList
+          candidate={candidate}
+          orderOfListOfCandidateData={orderOfListOfCandidatePersonData}
+        />
+      </div>
+      <div>
+        <h2 className="mb-4 text-xl font-semibold leading-none tracking-tight text-gray-900 ">
+          Dados de endereço
+        </h2>
+        <AddressDataDetailsList
+          address={address}
+          orderOfListOfCandidateAddressData={orderOfListOfCandidateAddressData}
+        />
+      </div>
     </div>
   )
 }

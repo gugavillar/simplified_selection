@@ -16,9 +16,9 @@ export const orderOfListOfCandidatePersonData = [
 
 export const orderOfListOfCandidateAddressData = [
   'zipCode',
-  'address',
-  'addressNumber',
-  'addOnAddress',
+  'location',
+  'number',
+  'addOn',
   'neighborhood',
   'city',
   'state',
