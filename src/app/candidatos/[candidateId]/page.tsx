@@ -16,6 +16,7 @@ type GetCandidateReturnType = {
     'upload' | 'id' | 'coll' | 'ts' | 'address'
   >
   addressData: Pick<CandidateDatabaseType, 'address'>['address']
+  uploadsData: Pick<CandidateDatabaseType, 'uploads'>['uploads']
 }
 
 const getCandidate = async (candidateId: string) => {
@@ -42,6 +43,7 @@ const getCandidate = async (candidateId: string) => {
     return {
       candidateData: formattedCandidateData,
       addressData: formattedAddressData,
+      uploadsData: uploads,
     }
   } catch {
     throw Error('Falha ao pegar os dados do candidato')
@@ -53,12 +55,16 @@ export default async function CandidateData({
 }: {
   params: { candidateId: string }
 }) {
-  const { addressData, candidateData } = (await getCandidate(
+  const { addressData, candidateData, uploadsData } = (await getCandidate(
     params.candidateId,
   )) as GetCandidateReturnType
   return (
     <WrapperPage title="Dados do candidato">
-      <PageContent candidate={candidateData} address={addressData} />
+      <PageContent
+        candidate={candidateData}
+        address={addressData}
+        uploads={uploadsData}
+      />
     </WrapperPage>
   )
 }

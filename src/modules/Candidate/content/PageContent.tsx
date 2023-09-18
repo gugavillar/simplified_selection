@@ -6,6 +6,7 @@ import {
 import { CandidateDatabaseType } from '@/types/candidates'
 
 import { AddressDataDetailsList } from '../components/AddressDataDetailsList'
+import { UploadsDataDetailsList } from '../components/UploadDataDetailsList'
 
 type PageContentProps = {
   candidate: Omit<
@@ -13,9 +14,14 @@ type PageContentProps = {
     'uploads' | 'id' | 'coll' | 'ts' | 'address'
   >
   address: Pick<CandidateDatabaseType, 'address'>['address']
+  uploads: Pick<CandidateDatabaseType, 'uploads'>['uploads']
 }
 
-export const PageContent = ({ candidate, address }: PageContentProps) => {
+export const PageContent = ({
+  candidate,
+  address,
+  uploads,
+}: PageContentProps) => {
   return (
     <div className="space-y-8">
       <div>
@@ -35,6 +41,12 @@ export const PageContent = ({ candidate, address }: PageContentProps) => {
           address={address}
           orderOfListOfCandidateAddressData={orderOfListOfCandidateAddressData}
         />
+      </div>
+      <div>
+        <h2 className="mb-4 text-xl font-semibold leading-none tracking-tight text-gray-900 ">
+          Documentos enviados
+        </h2>
+        <UploadsDataDetailsList uploads={uploads} />
       </div>
     </div>
   )
