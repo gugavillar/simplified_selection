@@ -9,7 +9,7 @@ type SubscriptionsFieldsProps = {
 export const SubscriptionsFields = ({ states }: SubscriptionsFieldsProps) => {
   return (
     <div>
-      <h3 className="text-gray-400 text-center mb-6">
+      <h3 className="mb-6 text-center text-gray-400">
         Informe os dados solicitados abaixo
       </h3>
       <PersonDataFields />

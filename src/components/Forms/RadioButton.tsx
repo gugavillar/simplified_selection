@@ -34,7 +34,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
           {subLabel ? <p className="mt-1 text-gray-400">{subLabel}</p> : null}
         </label>
 
-        {error ? <p className="text-xs text-red-500 mt-1">{error}</p> : null}
+        {error ? <p className="mt-1 text-xs text-red-500">{error}</p> : null}
       </div>
     )
   },

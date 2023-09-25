@@ -13,8 +13,8 @@ const EMPTY_STATE_DEFAULT_VALUES = {
 
 export const EmptyState = ({ description, title }: EmptyStateProps) => {
   return (
-    <div className="h-3/4 flex items-center justify-center">
-      <article className="rounded-xl bg-white p-4 ring ring-matisse-600 sm:p-6 lg:p-8 max-w-3xl mx-auto">
+    <div className="flex h-3/4 items-center justify-center">
+      <article className="mx-auto max-w-3xl rounded-xl bg-white p-4 ring ring-matisse-600 sm:p-6 lg:p-8">
         <div className="flex items-start sm:gap-8">
           <div
             className="hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-matisse-600"

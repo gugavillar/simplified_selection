@@ -24,7 +24,7 @@ export const UploadsDataDetailsList = ({
                 <Link
                   href={file?.url}
                   target="_blank"
-                  className="underline cursor-pointer text-matisse-600"
+                  className="cursor-pointer text-matisse-600 underline"
                 >
                   Visualizar - {file?.original_filename}
                 </Link>

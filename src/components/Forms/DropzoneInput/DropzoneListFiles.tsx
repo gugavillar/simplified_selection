@@ -18,14 +18,14 @@ export const DropzoneListFiles = ({
           return (
             <li
               key={file.lastModified}
-              className={`flex items-center justify-between w-full px-4 py-2 text-matisse-600 ${
+              className={`flex w-full items-center justify-between px-4 py-2 text-matisse-600 ${
                 !isLastFile ? 'border-b border-gray-300' : ''
               }`}
             >
               {file.name}
               <button
                 type="button"
-                className="px-3 py-2 text-xs font-medium text-center inline-flex items-center gap-2 text-white bg-matisse-600 rounded-lg hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-lg bg-matisse-600 px-3 py-2 text-center text-xs font-medium text-white hover:opacity-90"
                 onClick={() => handleRemoveFile(file)}
               >
                 Remover

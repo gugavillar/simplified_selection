@@ -108,8 +108,8 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
   }
 
   return (
-    <div className="space-y-4 mt-4">
-      <div className="flex gap-6 w-full max-md:flex-col">
+    <div className="mt-4 space-y-4">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Controller
           name="address.zipCode"
           control={control}
@@ -145,7 +145,7 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           {...register('address.number')}
         />
       </div>
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Input
           className="w-full"
           placeholder={isGettingAddress ? 'Carregando...' : 'Complemento'}
@@ -165,7 +165,7 @@ export const AddressDataFields = ({ states }: AddressDataFieldsProps) => {
           {...register('address.neighborhood')}
         />
       </div>
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Select
           className="w-full max-md:w-full"
           defaultValue=""

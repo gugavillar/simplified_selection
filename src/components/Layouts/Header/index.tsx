@@ -3,8 +3,8 @@ import { PropsWithChildren } from 'react'
 
 export const Header = ({ children }: PropsWithChildren) => {
   return (
-    <div className="w-full flex flex-col">
-      <header className="h-32 flex align-middle justify-center my-4">
+    <div className="flex w-full flex-col">
+      <header className="my-4 flex h-32 justify-center align-middle">
         <div className="p-4">
           <Image
             src="/assets/brasao.png"
@@ -15,7 +15,7 @@ export const Header = ({ children }: PropsWithChildren) => {
           />
         </div>
       </header>
-      <main className="flex flex-grow overflow-y-auto mb-6">{children}</main>
+      <main className="mb-6 flex flex-grow overflow-y-auto">{children}</main>
     </div>
   )
 }

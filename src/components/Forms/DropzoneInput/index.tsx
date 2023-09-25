@@ -113,13 +113,13 @@ export const DropzoneInputField = ({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-500 mb-2">
+      <label className="mb-2 block text-sm font-medium text-gray-500">
         {label}
       </label>
-      <div className="flex items-center justify-center w-full">
+      <div className="flex w-full items-center justify-center">
         <label
           htmlFor={id}
-          className={`group flex flex-col items-center justify-center w-full h-40 border-2 border-matisse-600 border-dashed rounded-lg cursor-pointer ${
+          className={`group flex h-40 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-matisse-600 ${
             selectedFiles?.length !== MAX_FILES ? 'hover:bg-matisse-600' : ''
           } `}
           {...getRootProps()}
@@ -133,7 +133,7 @@ export const DropzoneInputField = ({
         </label>
       </div>
       {errors?.[name]?.message && (
-        <p className="text-xs text-red-500 mt-2">
+        <p className="mt-2 text-xs text-red-500">
           {errors?.[name]?.message as string}
         </p>
       )}

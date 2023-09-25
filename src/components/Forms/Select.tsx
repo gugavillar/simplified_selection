@@ -25,7 +25,7 @@ const SelectComponent = <T,>(
 
       <select
         {...props}
-        className={`my-1 rounded-md border-gray-200 shadow-sm h-10 disabled:bg-gray-300 ${classes} ${errorClasses}`}
+        className={`my-1 h-10 rounded-md border-gray-200 shadow-sm disabled:bg-gray-300 ${classes} ${errorClasses}`}
         ref={ref}
       >
         <option value="" disabled>

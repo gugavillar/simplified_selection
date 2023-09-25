@@ -3,7 +3,7 @@ import { DropzoneInputField } from '@/components'
 export const UploadDataField = () => {
   return (
     <div>
-      <h3 className="text-gray-400 text-center mb-6">
+      <h3 className="mb-6 text-center text-gray-400">
         Envie os documentos comprobatórios
       </h3>
       <DropzoneInputField

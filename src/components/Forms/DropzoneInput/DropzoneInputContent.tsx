@@ -12,14 +12,14 @@ export const DropzoneInputContent = ({
   hasFiles,
 }: DropzoneInputContentProps) => {
   return hasFiles ? (
-    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-      <Check className="text-matisse-600 mb-4" width="32" height="32" />
+    <div className="flex flex-col items-center justify-center pb-6 pt-5">
+      <Check className="mb-4 text-matisse-600" width="32" height="32" />
       <p className="mb-2 text-sm text-matisse-600">
         <span className="font-semibold">Upload concluído com sucesso</span>
       </p>
     </div>
   ) : (
-    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+    <div className="flex flex-col items-center justify-center pb-6 pt-5">
       <Upload />
       <p className="mb-2 text-sm text-matisse-600 group-hover:text-white">
         <span className="font-semibold max-lg:hidden">

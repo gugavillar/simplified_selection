@@ -24,10 +24,10 @@ export const RoleSelection = ({
   } = useFormContext<RoleSubscriptionType>()
   return (
     <div>
-      <h3 className="text-gray-400 text-center mb-6">
+      <h3 className="mb-6 text-center text-gray-400">
         Selecione o cargo que deseja concorrer
       </h3>
-      <div className="flex flex-wrap gap-6 w-full max-md:flex-col">
+      <div className="flex w-full flex-wrap gap-6 max-md:flex-col">
         {radioOptions?.map((option) => (
           <RadioButton
             error={errors?.role?.message}

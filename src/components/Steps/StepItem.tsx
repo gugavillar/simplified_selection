@@ -16,7 +16,7 @@ export const StepItem = ({
   const bgColor = isActiveStep ? 'bg-matisse-600 text-white' : 'bg-gray-100'
   const textColor = isActiveStep ? 'text-matisse-600' : ''
   return (
-    <li className="flex items-center gap-2 p-2 bg-white">
+    <li className="flex items-center gap-2 bg-white p-2">
       {userStep > stepNumber ? (
         <StepCheckIcon />
       ) : (

@@ -27,7 +27,7 @@ export const ButtonsContainer = <T extends FieldValues>({
     }
 
     return (
-      <div className="flex gap-6 mt-4 justify-end">
+      <div className="mt-4 flex justify-end gap-6">
         {stepsForm?.isClearButton ? (
           <Button onClick={handleClearForm} variant="border" type="button">
             Limpar
@@ -52,7 +52,7 @@ export const ButtonsContainer = <T extends FieldValues>({
   }
 
   return (
-    <div className="flex gap-6 mt-4 justify-end">
+    <div className="mt-4 flex justify-end gap-6">
       <Button onClick={handleClearForm} variant="border" type="button">
         Limpar
       </Button>

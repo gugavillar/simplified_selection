@@ -23,7 +23,7 @@ export const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>(
         </label>
         <PatternFormat
           {...props}
-          className={`my-1 rounded-md border-gray-200 shadow-sm h-10 ${classes} ${errorClasses}`}
+          className={`my-1 h-10 rounded-md border-gray-200 shadow-sm ${classes} ${errorClasses}`}
           format={format}
           getInputRef={ref}
         />

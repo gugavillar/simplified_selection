@@ -18,7 +18,7 @@ export const PersonDataFields = () => {
   } = useFormContext<SubscriptionFormType>()
   return (
     <div className="space-y-4">
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Controller
           name="taxpayerRegistration"
           control={control}
@@ -43,7 +43,7 @@ export const PersonDataFields = () => {
           {...register('name')}
         />
       </div>
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Select
           className="w-full max-md:w-full"
           defaultValue=""
@@ -80,7 +80,7 @@ export const PersonDataFields = () => {
           )}
         />
       </div>
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Controller
           name="phone"
           control={control}
@@ -106,7 +106,7 @@ export const PersonDataFields = () => {
           {...register('email')}
         />
       </div>
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Input
           className="w-full"
           placeholder="Nome da mãe"
@@ -146,7 +146,7 @@ export const PersonDataFields = () => {
           )}
         />
       </div>
-      <div className="flex gap-6 w-full max-md:flex-col">
+      <div className="flex w-full gap-6 max-md:flex-col">
         <Select
           className="w-full max-md:w-full"
           defaultValue=""
